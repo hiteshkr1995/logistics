@@ -16,7 +16,7 @@ export default function WhyUs() {
       <div className="container">
         <div className="section-head" data-reveal>
           <div>
-            <span className="eyebrow eyebrow--light">Why Spur</span>
+            <span className="eyebrow eyebrow--light">Why ON-SPREE</span>
             <h2 id="why-title" className="h-section">
               Delivery that feels
               <br />

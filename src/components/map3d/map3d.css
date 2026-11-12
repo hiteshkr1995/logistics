@@ -1,0 +1,85 @@
+.m3d { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--paper); isolation: isolate; }
+.m3d__viewport { position: absolute; inset: 0; outline: none; cursor: grab; }
+.m3d__viewport:active { cursor: grabbing; }
+.m3d__viewport:focus-visible { box-shadow: inset 0 0 0 3px var(--brand); }
+.m3d__canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; opacity: 0; transition: opacity 1.2s ease; }
+.m3d.is-ready .m3d__canvas { opacity: 1; }
+
+/* Miniature / tilt-shift feel: soft blur at the top and bottom edges */
+.m3d__tiltshift {
+  position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  backdrop-filter: blur(2.5px); -webkit-backdrop-filter: blur(2.5px);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 22%, transparent 74%, #000 100%);
+  mask-image: linear-gradient(180deg, #000 0%, transparent 22%, transparent 74%, #000 100%);
+}
+@media (max-width: 1023px) { .m3d__tiltshift { display: none; } }
+
+/* ---------- HTML pins projected from 3D ---------- */
+.m3d__pins { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+.pin {
+  position: absolute; left: 0; top: 0; padding: 0; border: 0; background: none; pointer-events: auto; cursor: pointer;
+  will-change: transform; visibility: hidden;
+}
+.pin__icon {
+  position: absolute; left: 0; top: 0; display: grid; place-items: center;
+  animation: pin-in 0.7s var(--ease-spring) var(--d, 2s) both;
+}
+@keyframes pin-in { from { opacity: 0; transform: translate(-50%, -150%) scale(0.4); } }
+.pin__icon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
+
+.pin--hub .pin__icon {
+  width: 36px; height: 36px; transform: translate(-50%, -100%); border-radius: 50% 50% 50% 4px; rotate: -45deg;
+  background: var(--ink); color: #fff; box-shadow: 0 8px 18px -6px rgba(15, 16, 17, 0.55), 0 0 0 3px rgba(255, 255, 255, 0.85);
+}
+.pin--hub .pin__icon svg { rotate: 45deg; fill: var(--brand-light); stroke: none; width: 18px; height: 18px; }
+.pin--drop .pin__icon {
+  width: 30px; height: 30px; transform: translate(-50%, -100%); border-radius: 50% 50% 50% 4px; rotate: -45deg;
+  background: #fff; color: var(--brand-700); box-shadow: 0 6px 14px -5px rgba(15, 16, 17, 0.45), 0 0 0 3px rgba(10, 127, 199, 0.35);
+}
+.pin--drop .pin__icon svg { rotate: 45deg; }
+.pin--drop::before, .pin--hub::before {
+  content: ''; position: absolute; left: -14px; top: -7px; width: 28px; height: 14px; border-radius: 50%;
+  border: 2px solid var(--brand); background: rgba(10, 127, 199, 0.18); animation: pin-pulse 2.4s ease-out infinite;
+}
+@keyframes pin-pulse { from { transform: scale(0.4); opacity: 1; } to { transform: scale(1.8); opacity: 0; } }
+.pin--spot .pin__icon {
+  width: 14px; height: 14px; transform: translate(-50%, -50%); border-radius: 50%;
+  background: #fff; box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.35), 0 2px 8px rgba(15, 16, 17, 0.45);
+}
+.pin--spot::after {
+  content: ''; position: absolute; left: -14px; top: -14px; width: 28px; height: 28px; border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.9); animation: spot 2.8s ease-in-out infinite;
+}
+@keyframes spot { 50% { transform: scale(1.3); opacity: 0.5; } }
+
+.pin__tip {
+  position: absolute; left: 0; bottom: 46px; transform: translate(-50%, 6px); white-space: nowrap;
+  padding: 9px 14px; border-radius: 12px; background: var(--ink); color: #fff; text-align: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.25s var(--ease-out);
+  box-shadow: 0 12px 24px -10px rgba(15, 16, 17, 0.6);
+}
+.pin--spot .pin__tip { bottom: 20px; }
+.pin__tip::after { content: ''; position: absolute; left: 50%; bottom: -5px; width: 10px; height: 10px; margin-left: -5px; background: var(--ink); transform: rotate(45deg); }
+.pin__tip strong { display: block; font: 600 13px var(--font); }
+.pin__tip em { display: block; font: 500 10.5px var(--mono); font-style: normal; color: var(--brand-light); margin-top: 2px; }
+.pin:hover .pin__tip, .pin:focus-visible .pin__tip { opacity: 1; transform: translate(-50%, 0); }
+.pin:hover, .pin:focus-visible { z-index: 5; }
+.pin:focus-visible { outline: none; }
+.pin:focus-visible .pin__icon { box-shadow: 0 0 0 3px var(--brand), 0 0 0 6px #fff; }
+
+/* ---------- Controls (zoom / rotate / reset) ---------- */
+.m3d__controls {
+  position: absolute; z-index: 3; right: clamp(16px, 2.4vw, 32px); bottom: clamp(16px, 3vh, 32px);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.m3d__rotate { display: flex; gap: 10px; }
+@media (max-width: 639px) {
+  .m3d__controls { bottom: 64px; right: 12px; gap: 8px; }
+  .m3d__controls .glass-btn { width: 40px; height: 40px; }
+  .m3d__rotate { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pin__icon, .pin--drop::before, .pin--hub::before, .pin--spot::after { animation: none; }
+  .m3d__canvas { transition: none; }
+}

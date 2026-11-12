@@ -307,8 +307,8 @@ function Oberbaum() {
       <Box x0={44} y0={y0} x1={vx0} y1={y1} z1={0.6} c={ASPHALT} />
       <g transform={topAt(0.6)}>
         <line x1={44.8} y1={y0} x2={44.8} y2={y1} stroke="#F2EFE8" strokeWidth={0.05} strokeDasharray="0.3 0.3" />
-        <line x1={44.25} y1={y0} x2={44.25} y2={y1} stroke="#8EDDB0" strokeWidth={0.12} />
-        <line x1={45.35} y1={y0} x2={45.35} y2={y1} stroke="#8EDDB0" strokeWidth={0.12} />
+        <line x1={44.25} y1={y0} x2={44.25} y2={y1} stroke="#8EC5EA" strokeWidth={0.12} />
+        <line x1={45.35} y1={y0} x2={45.35} y2={y1} stroke="#8EC5EA" strokeWidth={0.12} />
       </g>
       {/* Brick viaduct with arcade + U-Bahn deck */}
       <Box x0={vx0} y0={y0} x1={vx1} y1={y1} z1={1.35} c={BRICK} />
@@ -369,7 +369,7 @@ function AlexSlab() {
   );
 }
 
-/* ---------------- Spur micro-hubs ---------------- */
+/* ---------------- ON-SPREE micro-hubs ---------------- */
 const HUB_SHADE: Shade = { top: '#CFF2DD', left: '#FBFBF8', right: '#E3E5E0' };
 
 function HubBuilding({ i }: { i: number }) {
@@ -380,14 +380,14 @@ function HubBuilding({ i }: { i: number }) {
     <g className="lm">
       <Box x0={b.x0} y0={b.y0} x1={b.x1} y1={b.y1} z1={h} c={HUB_SHADE} />
       <g transform={faceS(b.y1)}>
-        <rect x={b.x0} y={-0.66} width={b.x1 - b.x0} height={0.12} fill="#2BD67B" />
+        <rect x={b.x0} y={-0.66} width={b.x1 - b.x0} height={0.12} fill="#0A7FC7" />
         <rect x={b.x0 + 0.3} y={-0.45} width={0.9} height={0.45} fill="#2D3431" />
         <text x={b.x0 + 1.45} y={-0.18} fontSize={0.28} fontWeight={800} fill="#141816" fontFamily="Inter Tight, Inter, sans-serif">
-          SPUR HUB
+          ON-SPREE HUB
         </text>
       </g>
       <g transform={faceE(b.x1)}>
-        <rect x={b.y0} y={-0.66} width={b.y1 - b.y0} height={0.12} fill="#22B868" />
+        <rect x={b.y0} y={-0.66} width={b.y1 - b.y0} height={0.12} fill="#0670B0" />
         {[0.3, 0.9, 1.5].map((o) => (
           <rect key={o} x={b.y0 + o} y={-0.45} width={0.35} height={0.25} fill="#9EC3CF" />
         ))}
@@ -396,7 +396,7 @@ function HubBuilding({ i }: { i: number }) {
         {Array.from({ length: 3 }, (_, k) => (
           <rect key={k} x={b.x0 + 0.3 + k * 0.62} y={b.y0 + 0.3} width={0.5} height={b.y1 - b.y0 - 0.6} fill="#3F566B" stroke="#8FB2C9" strokeWidth={0.03} />
         ))}
-        <circle cx={b.x1 - 0.55} cy={(b.y0 + b.y1) / 2} r={0.36} fill="#2BD67B" />
+        <circle cx={b.x1 - 0.55} cy={(b.y0 + b.y1) / 2} r={0.36} fill="#0A7FC7" />
         <path
           d={`M${b.x1 - 0.42} ${(b.y0 + b.y1) / 2 - 0.15}c-.1-.12-.3-.16-.45-.06-.25.16.02.33.17.37.2.06.33.2.18.34-.15.13-.4.08-.5-.05`}
           fill="none"

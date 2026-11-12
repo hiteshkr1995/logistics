@@ -101,7 +101,7 @@ export default function Business() {
                 ))}
               </ul>
             </div>
-            <button type="button" className="btn btn--green btn--lg" onClick={() => openDialog('team')}>
+            <button type="button" className="btn btn--primary btn--lg" onClick={() => openDialog('team')}>
               Talk to Our Team <IconArrow />
             </button>
           </div>
@@ -127,9 +127,9 @@ export default function Business() {
                   <path d="M-10 110 C 60 120, 110 60, 180 80 S 300 40, 340 60" stroke="#AEDBE7" strokeWidth="14" fill="none" />
                   <path className="tc-route" d="M40 118 L40 72 L150 72 L150 40 L276 40" pathLength={1} />
                   <circle cx="40" cy="118" r="7" fill="#141816" />
-                  <circle cx="276" cy="40" r="9" fill="#2BD67B" stroke="#fff" strokeWidth="3" />
+                  <circle cx="276" cy="40" r="9" fill="#0A7FC7" stroke="#fff" strokeWidth="3" />
                   <g className="tc-bike">
-                    <circle r="10" fill="#fff" stroke="#2BD67B" strokeWidth="3" />
+                    <circle r="10" fill="#fff" stroke="#0A7FC7" strokeWidth="3" />
                     <circle r="4" fill="#141816" />
                   </g>
                 </svg>

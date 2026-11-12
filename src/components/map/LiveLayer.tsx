@@ -35,13 +35,13 @@ function Tip({ title, sub, y = -40 }: { title: string; sub: string; y?: number }
 function HubPin({ x, y, z, label, i }: { x: number; y: number; z: number; label: string; i: number }) {
   const [sx, sy] = P(x, y, z);
   return (
-    <g className="mk mk-hub" transform={`translate(${sx} ${sy})`} tabIndex={0} role="img" aria-label={`Spur micro-hub, ${label}`} style={{ ['--d' as string]: `${0.9 + i * 0.12}s` }}>
+    <g className="mk mk-hub" transform={`translate(${sx} ${sy})`} tabIndex={0} role="img" aria-label={`ON-SPREE micro-hub, ${label}`} style={{ ['--d' as string]: `${0.9 + i * 0.12}s` }}>
       <g className="mk-pop">
         <ellipse className="mk-pulse" cx={0} cy={0} rx={14} ry={7} />
         <path d="M0 0 C-2 -5 -12 -10 -12 -21 A12 12 0 1 1 12 -21 C12 -10 2 -5 0 0Z" className="mk-hub-pin" />
         <circle cx={0} cy={-21} r={8.2} className="mk-hub-core" />
         <path d="M1.4 -26.4 L-3.2 -20 L0 -20 L-1.4 -15.6 L3.2 -22 L0 -22 Z" className="mk-hub-bolt" />
-        <Tip title={`Spur Hub · ${label}`} sub="Micro-hub & e-bike charging" y={-42} />
+        <Tip title={`ON-SPREE Hub · ${label}`} sub="Micro-hub & e-bike charging" y={-42} />
       </g>
     </g>
   );
@@ -160,17 +160,17 @@ export const LiveLayer = memo(function LiveLayer({ compact, reducedMotion }: { c
     >
       <defs>
         <radialGradient id="zoneFill">
-          <stop offset="0" stopColor="#2BD67B" stopOpacity=".2" />
-          <stop offset=".75" stopColor="#2BD67B" stopOpacity=".07" />
-          <stop offset="1" stopColor="#2BD67B" stopOpacity=".22" />
+          <stop offset="0" stopColor="#0A7FC7" stopOpacity=".2" />
+          <stop offset=".75" stopColor="#0A7FC7" stopOpacity=".07" />
+          <stop offset="1" stopColor="#0A7FC7" stopOpacity=".22" />
         </radialGradient>
         <linearGradient id="beam" x1="0" x2="0" y1="1" y2="0">
-          <stop offset="0" stopColor="#2BD67B" stopOpacity=".55" />
-          <stop offset="1" stopColor="#2BD67B" stopOpacity="0" />
+          <stop offset="0" stopColor="#0A7FC7" stopOpacity=".55" />
+          <stop offset="1" stopColor="#0A7FC7" stopOpacity="0" />
         </linearGradient>
         <radialGradient id="bikeHalo">
-          <stop offset="0" stopColor="#2BD67B" stopOpacity=".45" />
-          <stop offset="1" stopColor="#2BD67B" stopOpacity="0" />
+          <stop offset="0" stopColor="#0A7FC7" stopOpacity=".45" />
+          <stop offset="1" stopColor="#0A7FC7" stopOpacity="0" />
         </radialGradient>
       </defs>
 

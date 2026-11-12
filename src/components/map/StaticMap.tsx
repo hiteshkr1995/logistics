@@ -151,13 +151,13 @@ function Ground() {
         <path d={wide} stroke="#CAC5BA" strokeWidth={1.44} />
         <path d={thin} stroke="#D9D5CC" strokeWidth={0.9} />
         <path d={wide} stroke="#D9D5CC" strokeWidth={1.3} />
-        <path d={lanes} stroke="#93DFB3" strokeWidth={0.13} strokeLinecap="butt" />
+        <path d={lanes} stroke="#8EC5EA" strokeWidth={0.13} strokeLinecap="butt" />
         <path d={thin + wide} stroke="#F6F3EC" strokeWidth={0.05} strokeDasharray="0.32 0.42" strokeLinecap="butt" />
       </g>
       {/* Großer Stern */}
       <circle cx={SIEGES.x} cy={SIEGES.y} r={STERN_R} fill="none" stroke="#CAC5BA" strokeWidth={0.94} />
       <circle cx={SIEGES.x} cy={SIEGES.y} r={STERN_R} fill="none" stroke="#D9D5CC" strokeWidth={0.8} />
-      <circle cx={SIEGES.x} cy={SIEGES.y} r={STERN_R - 0.32} fill="none" stroke="#93DFB3" strokeWidth={0.1} />
+      <circle cx={SIEGES.x} cy={SIEGES.y} r={STERN_R - 0.32} fill="none" stroke="#8EC5EA" strokeWidth={0.1} />
       <circle cx={SIEGES.x} cy={SIEGES.y} r={1.12} fill="#C2E0A8" stroke="#F1E8D2" strokeWidth={0.12} />
     </g>
   );

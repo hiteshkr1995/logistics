@@ -232,7 +232,7 @@ export default function BerlinMap({ layout, reducedMotion }: { layout: MapLayout
         tabIndex={0}
         role="region"
         aria-roledescription="interactive map"
-        aria-label="Illustrated map of Berlin showing Spur e-bike couriers riding between micro-hubs, drop-offs and landmarks such as the Brandenburg Gate, Reichstag, Berlin Cathedral, TV Tower, Victory Column and Oberbaum Bridge. Drag or use arrow keys to pan, plus and minus to zoom, 0 to reset."
+        aria-label="Illustrated map of Berlin showing ON-SPREE e-bike couriers riding between micro-hubs, drop-offs and landmarks such as the Brandenburg Gate, Reichstag, Berlin Cathedral, TV Tower, Victory Column and Oberbaum Bridge. Drag or use arrow keys to pan, plus and minus to zoom, 0 to reset."
         onKeyDown={onKey}
       >
         <div ref={stageRef} className="bmap__stage" style={{ width: VB.w, height: VB.h }}>

@@ -21,7 +21,7 @@ export default function FinalCta() {
                   <mpath href="#final-path" />
                 </animateMotion>
               )}
-              <ellipse rx="46" ry="14" fill="rgba(43,214,123,.35)" />
+              <ellipse rx="46" ry="14" fill="rgba(10, 127, 199,.35)" />
               <g transform="scale(3.6)">
                 <BikeSprite v="cargo" />
               </g>
@@ -31,7 +31,7 @@ export default function FinalCta() {
             <span className="eyebrow eyebrow--light">Start today</span>
             <h2 id="final-title">Ready to Move Something?</h2>
             <p>Let us take care of the delivery while you focus on what matters.</p>
-            <button type="button" className="btn btn--green btn--lg" onClick={() => openDialog('booking')}>
+            <button type="button" className="btn btn--primary btn--lg" onClick={() => openDialog('booking')}>
               Get Started <IconArrow />
             </button>
           </div>

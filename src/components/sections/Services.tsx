@@ -30,7 +30,7 @@ export default function Services() {
             <h2 id="services-title" className="h-section">
               Every delivery,
               <br />
-              <span className="text-green">one green network.</span>
+              <span className="text-brand">one clean network.</span>
             </h2>
           </div>
           <p className="lead">From a single envelope to daily business routes — pick the speed you need and we’ll handle the ride.</p>

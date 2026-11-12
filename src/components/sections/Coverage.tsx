@@ -34,7 +34,7 @@ export default function Coverage() {
           <h2 id="coverage-title" className="h-section">
             Rooted in the Kiez.
             <br />
-            <span className="text-green">Riding across the city.</span>
+            <span className="text-brand">Riding across the city.</span>
           </h2>
           <p className="lead">
             Micro-hubs inside the neighbourhoods we serve keep every ride short. Pick a district to see how we deliver there.
@@ -65,7 +65,7 @@ export default function Coverage() {
 
         <div className="coverage__mapwrap" data-reveal style={{ ['--rd' as string]: '0.1s' }}>
           <div className="coverage__tilt">
-            <svg className="coverage__map" viewBox="24 30 560 470" role="img" aria-label={`Map of Spur delivery zones in Berlin, ${current.name} highlighted`}>
+            <svg className="coverage__map" viewBox="24 30 560 470" role="img" aria-label={`Map of ON-SPREE delivery zones in Berlin, ${current.name} highlighted`}>
               <defs>
                 <pattern id="cov-dots" width="12" height="12" patternUnits="userSpaceOnUse">
                   <circle cx="2" cy="2" r="1.2" fill="rgba(20,24,22,.12)" />

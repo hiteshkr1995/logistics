@@ -60,7 +60,7 @@ export default function Navbar() {
           ))}
         </nav>
         <div className="nav__cta">
-          <button type="button" className="btn btn--green btn--sm" onClick={() => openDialog('booking')}>
+          <button type="button" className="btn btn--primary btn--sm" onClick={() => openDialog('booking')}>
             Book a Delivery
           </button>
           <button
@@ -85,7 +85,7 @@ export default function Navbar() {
         </nav>
         <button
           type="button"
-          className="btn btn--green btn--lg"
+          className="btn btn--primary btn--lg"
           onClick={() => {
             setOpen(false);
             openDialog('booking');

@@ -9,8 +9,8 @@ const DialogCtx = createContext<(mode: DialogMode) => void>(() => {});
 export const useOpenDialog = () => useContext(DialogCtx);
 
 const COPY: Record<DialogMode, { title: string; intro: string }> = {
-  booking: { title: 'Get a delivery', intro: 'Tell us where the parcel starts and where it’s going. A Spur courier on an e-cargo bike will take it from there.' },
-  partner: { title: 'Become a partner', intro: 'Ride with us as a courier, or plug your shop into the Spur network. Leave your details and we’ll reach out.' },
+  booking: { title: 'Get a delivery', intro: 'Tell us where the parcel starts and where it’s going. An ON-SPREE courier on an e-cargo bike will take it from there.' },
+  partner: { title: 'Become a partner', intro: 'Ride with us as a courier, or plug your shop into the ON-SPREE network. Leave your details and we’ll reach out.' },
   team: { title: 'Talk to our team', intro: 'Tell us a little about your business and delivery needs — our Berlin team will get back to you.' },
   privacy: { title: 'Privacy Policy', intro: '' },
   terms: { title: 'Terms & Conditions', intro: '' },
@@ -46,13 +46,13 @@ function LegalBody({ mode }: { mode: DialogMode }) {
   return (
     <div className="dlg__legal">
       <p>
-        This is placeholder {mode === 'privacy' ? 'privacy' : mode === 'terms' ? 'terms' : 'imprint'} content for the Spur landing page.
+        This is placeholder {mode === 'privacy' ? 'privacy' : mode === 'terms' ? 'terms' : 'imprint'} content for the ON-SPREE landing page.
         Replace it with your reviewed legal text before going live.
       </p>
       <p>
         {mode === 'imprint'
-          ? 'Spur Logistics GmbH (placeholder) · Musterstraße 1, 10115 Berlin · Register court: Amtsgericht Charlottenburg · HRB 000000.'
-          : 'Under the GDPR you have the right to access, correct and delete the personal data we hold about you. Contact privacy@spur.example for any request.'}
+          ? 'ON SPREE Logistics UG (placeholder) · Musterstraße 1, 10115 Berlin · Register court: Amtsgericht Charlottenburg · HRB 000000.'
+          : 'Under the GDPR you have the right to access, correct and delete the personal data we hold about you. Contact privacy@onspree.example for any request.'}
       </p>
     </div>
   );
@@ -109,7 +109,7 @@ export function DialogProvider({ children }: { children: ReactNode }) {
               <span className="dlg__done-icon"><IconCheck /></span>
               <h3>Request received</h3>
               <p>Thanks — we’ve got your details. Someone from our Berlin team will contact you to confirm the next steps.</p>
-              <button type="button" className="btn btn--green" onClick={() => ref.current?.close()}>Done</button>
+              <button type="button" className="btn btn--primary" onClick={() => ref.current?.close()}>Done</button>
             </div>
           ) : (
             <form className="dlg__form" onSubmit={submit}>
@@ -144,7 +144,7 @@ export function DialogProvider({ children }: { children: ReactNode }) {
                   </label>
                 </>
               )}
-              <button type="submit" className="btn btn--green btn--lg dlg__submit">
+              <button type="submit" className="btn btn--primary btn--lg dlg__submit">
                 {mode === 'booking' ? 'Request delivery' : 'Send'}
               </button>
               <p className="dlg__fine">By sending this form you agree to be contacted about your request.</p>

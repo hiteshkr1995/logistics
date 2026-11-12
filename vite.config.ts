@@ -6,4 +6,6 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ command, isPreview }) => ({
   base: command === 'build' || isPreview ? '/logistics/' : '/',
   plugins: [react()],
+  // The lazily loaded 3D map chunk (three.js) is ~570 kB minified / ~150 kB gzipped.
+  build: { chunkSizeWarningLimit: 700 },
 }));
