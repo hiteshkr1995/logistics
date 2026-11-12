@@ -1,0 +1,151 @@
+.bmap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #ECE8DF;
+  isolation: isolate;
+}
+
+.bmap__viewport {
+  position: absolute;
+  inset: 0;
+  cursor: grab;
+  touch-action: pan-y;
+  outline: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.bmap__viewport.is-dragging { cursor: grabbing; }
+.bmap__viewport:focus-visible { box-shadow: inset 0 0 0 3px var(--green); }
+
+.bmap__stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+  animation: map-enter 1.6s var(--ease-out) both;
+}
+.bmap__stage.is-animating { transition: transform 0.5s var(--ease-out); }
+
+@keyframes map-enter {
+  from { opacity: 0; filter: blur(6px) saturate(0.6); }
+  to { opacity: 1; filter: none; }
+}
+
+.map-svg {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  will-change: transform;
+}
+.map-svg--static { pointer-events: none; }
+.map-svg--live { pointer-events: none; }
+.map-svg--live .mk { pointer-events: auto; }
+
+/* Soft atmospheric haze at the map edges (tilt-shift feel) */
+.bmap__haze {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 95% at 68% 55%, transparent 58%, rgba(246, 243, 236, 0.55) 80%, rgba(246, 243, 236, 0.95) 100%);
+}
+
+.bx-top { stroke: rgba(255, 255, 255, 0.55); stroke-width: 0.6; stroke-linejoin: round; }
+
+/* ---------- Controls ---------- */
+.bmap__controls {
+  position: absolute;
+  right: clamp(16px, 2.4vw, 32px);
+  bottom: clamp(16px, 3vh, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 3;
+}
+
+/* ---------- Bikes ---------- */
+.bk-wheel { fill: none; stroke: #1E2422; stroke-width: 1.5; }
+.bk-frame { fill: none; stroke: #2A302D; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.bk-batt { fill: #2BD67B; }
+.bk-box { fill: #2BD67B; stroke: #0E7F45; stroke-width: 0.7; }
+.bk-box-lid { fill: #6BE8A3; }
+.bk-logo { fill: none; stroke: #0F1A14; stroke-width: 1; stroke-linecap: round; }
+.bk-leg, .bk-arm { fill: none; stroke: #23292B; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.bk-torso { fill: none; stroke: #1B2124; stroke-width: 3.4; stroke-linecap: round; }
+.bk-skin { fill: #E8B996; }
+.bk-helmet { fill: #2BD67B; stroke: #0E7F45; stroke-width: 0.5; }
+.bike-bob { animation: bob 0.42s ease-in-out infinite alternate; }
+@keyframes bob { to { transform: translateY(-0.7px); } }
+
+/* ---------- Ground overlays ---------- */
+.zone-ring { fill: none; stroke: rgba(43, 214, 123, 0.75); stroke-width: 0.14; }
+.zone-dash { fill: none; stroke: rgba(20, 150, 85, 0.55); stroke-width: 0.1; stroke-dasharray: 0.5 0.5; }
+.zone-fill { animation: zone-breathe 5s ease-in-out infinite; }
+@keyframes zone-breathe { 50% { opacity: 0.55; } }
+
+.ground-label {
+  font-family: var(--mono);
+  font-size: 0.95px;
+  font-weight: 600;
+  letter-spacing: 0.36px;
+  fill: rgba(20, 24, 22, 0.42);
+}
+.ground-label--zone { font-size: 0.62px; fill: #0B8A4A; letter-spacing: 0.22px; }
+
+.route-glow { fill: none; stroke: rgba(43, 214, 123, 0.28); stroke-width: 0.62; stroke-linecap: round; stroke-linejoin: round; }
+.route-line {
+  fill: none; stroke: #18B866; stroke-width: 0.16; stroke-linecap: round; stroke-linejoin: round;
+  stroke-dasharray: 1; stroke-dashoffset: 1;
+  animation: route-draw 2.2s var(--ease-out) var(--d, 0.5s) forwards;
+}
+.route-flow {
+  fill: none; stroke: #FFFFFF; stroke-width: 0.09; stroke-linecap: round;
+  stroke-dasharray: 0.18 0.62;
+  opacity: 0;
+  animation: route-flow 1.4s linear infinite, fade-in 0.6s ease calc(var(--d, 0.5s) + 1.6s) forwards;
+}
+@keyframes route-draw { to { stroke-dashoffset: 0; } }
+@keyframes route-flow { to { stroke-dashoffset: -0.8; } }
+@keyframes fade-in { to { opacity: 0.95; } }
+
+.beam { animation: beam 3.2s ease-in-out infinite; mix-blend-mode: screen; }
+@keyframes beam { 50% { opacity: 0.6; } }
+.lm-beacon { animation: beacon 1.6s ease-in-out infinite; }
+@keyframes beacon { 50% { opacity: 0.25; } }
+
+/* ---------- Pins & tooltips ---------- */
+.mk { cursor: pointer; outline: none; }
+.mk-pop { animation: pop-in 0.6s var(--ease-spring) var(--d, 1s) both; transform-box: fill-box; }
+@keyframes pop-in { from { opacity: 0; transform: translateY(-10px) scale(0.6); } }
+
+.mk-hub-pin { fill: #141816; filter: drop-shadow(0 4px 6px rgba(20, 24, 22, 0.3)); }
+.mk-hub-core { fill: #2BD67B; }
+.mk-hub-bolt { fill: #141816; }
+.mk-drop-pin { fill: #FFFFFF; stroke: rgba(20, 24, 22, 0.08); filter: drop-shadow(0 3px 5px rgba(20, 24, 22, 0.25)); }
+.mk-drop-box { fill: #2BD67B; }
+.mk-drop-line { fill: none; stroke: #0B6B3A; stroke-width: 0.8; stroke-linejoin: round; }
+.mk-pulse { fill: rgba(43, 214, 123, 0.25); stroke: #2BD67B; stroke-width: 1; transform-box: fill-box; transform-origin: center; animation: pulse 2.4s ease-out infinite; }
+@keyframes pulse { from { transform: scale(0.4); opacity: 1; } to { transform: scale(1.6); opacity: 0; } }
+
+.mk-spot-ring { fill: rgba(255, 255, 255, 0.35); stroke: rgba(255, 255, 255, 0.95); stroke-width: 1.2; transform-box: fill-box; transform-origin: center; animation: spot 2.8s ease-in-out infinite; }
+.mk-spot-dot { fill: #FFFFFF; filter: drop-shadow(0 1px 3px rgba(20, 24, 22, 0.45)); }
+@keyframes spot { 50% { transform: scale(1.25); opacity: 0.6; } }
+
+.mk-tip { opacity: 0; transform: translateY(4px); transition: opacity 0.2s ease, transform 0.25s var(--ease-out); pointer-events: none; }
+.mk:hover .mk-tip, .mk:focus-visible .mk-tip { opacity: 1; transform: none; }
+.mk:hover .mk-hub-pin, .mk:focus-visible .mk-hub-pin { fill: #0B8A4A; }
+.mk:focus-visible .mk-spot-dot, .mk:focus-visible .mk-drop-pin { stroke: #2BD67B; stroke-width: 2.5; }
+.mk-tip-bg { fill: #141816; }
+.mk-tip-title { font: 600 11.5px var(--font); fill: #FFFFFF; }
+.mk-tip-sub { font: 500 9.5px var(--mono); fill: #6BE8A3; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bmap__stage, .mk-pop { animation: none; }
+  .bike-bob, .zone-fill, .beam, .lm-beacon, .mk-pulse, .mk-spot-ring { animation: none; }
+  .route-line { animation: none; stroke-dashoffset: 0; }
+  .route-flow { animation: none; opacity: 0.9; }
+  .bmap__stage.is-animating { transition: none; }
+}
