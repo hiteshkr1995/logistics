@@ -86,7 +86,7 @@
 .hero__legend span { display: inline-flex; align-items: center; gap: 8px; }
 .hero__legend-hint { font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); padding-left: 16px; border-left: 1px solid var(--line-strong); }
 .lg { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
-.lg--hub { background: var(--ink); box-shadow: inset 0 0 0 3px var(--ink), inset 0 0 0 6px var(--brand); }
+.lg--hub { background: var(--night); box-shadow: inset 0 0 0 3px var(--night), inset 0 0 0 6px var(--brand); }
 .lg--drop { background: #fff; box-shadow: 0 0 0 1px var(--line-strong), inset 0 0 0 3px #fff, inset 0 0 0 6px var(--brand); }
 .lg--route { width: 22px; height: 4px; border-radius: 4px; background: repeating-linear-gradient(90deg, var(--brand-600) 0 6px, #fff 6px 9px); box-shadow: 0 0 0 3px rgba(10, 127, 199, 0.25); }
 

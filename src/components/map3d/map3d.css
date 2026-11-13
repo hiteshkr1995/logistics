@@ -29,7 +29,7 @@
 
 .pin--hub .pin__icon {
   width: 36px; height: 36px; transform: translate(-50%, -100%); border-radius: 50% 50% 50% 4px; rotate: -45deg;
-  background: var(--ink); color: #fff; box-shadow: 0 8px 18px -6px rgba(15, 16, 17, 0.55), 0 0 0 3px rgba(255, 255, 255, 0.85);
+  background: var(--night); color: #fff; box-shadow: 0 8px 18px -6px rgba(15, 16, 17, 0.55), 0 0 0 3px rgba(255, 255, 255, 0.85);
 }
 .pin--hub .pin__icon svg { rotate: 45deg; fill: var(--brand-light); stroke: none; width: 18px; height: 18px; }
 .pin--drop .pin__icon {
@@ -54,12 +54,12 @@
 
 .pin__tip {
   position: absolute; left: 0; bottom: 46px; transform: translate(-50%, 6px); white-space: nowrap;
-  padding: 9px 14px; border-radius: 12px; background: var(--ink); color: #fff; text-align: center;
+  padding: 9px 14px; border-radius: 12px; background: var(--night); color: #fff; text-align: center;
   opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.25s var(--ease-out);
   box-shadow: 0 12px 24px -10px rgba(15, 16, 17, 0.6);
 }
 .pin--spot .pin__tip { bottom: 20px; }
-.pin__tip::after { content: ''; position: absolute; left: 50%; bottom: -5px; width: 10px; height: 10px; margin-left: -5px; background: var(--ink); transform: rotate(45deg); }
+.pin__tip::after { content: ''; position: absolute; left: 50%; bottom: -5px; width: 10px; height: 10px; margin-left: -5px; background: var(--night); transform: rotate(45deg); }
 .pin__tip strong { display: block; font: 600 13px var(--font); }
 .pin__tip em { display: block; font: 500 10.5px var(--mono); font-style: normal; color: var(--brand-light); margin-top: 2px; }
 .pin:hover .pin__tip, .pin:focus-visible .pin__tip { opacity: 1; transform: translate(-50%, 0); }

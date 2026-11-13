@@ -57,6 +57,10 @@ export const IconStore = (p: P) => (
 );
 export const IconCart = (p: P) => (<svg {...base(p)}><path d="M3 4h2.5l2.2 11h10.6L20.5 7.5H7" /><circle cx="9" cy="19" r="1.5" /><circle cx="17" cy="19" r="1.5" /></svg>);
 export const IconFork = (p: P) => (<svg {...base(p)}><path d="M7 3v8M4.5 3v5a2.5 2.5 0 0 0 5 0V3M7 11v10M17 21V3c-2.5 1-3.5 4-3.5 7.5 0 1.5 1 2.5 3.5 2.5" /></svg>);
+export const IconSun = (p: P) => (
+  <svg {...base(p)}><circle cx="12" cy="12" r="4.2" /><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6" /></svg>
+);
+export const IconMoon = (p: P) => (<svg {...base(p)}><path d="M20 14.6A8.2 8.2 0 0 1 9.4 4a8.2 8.2 0 1 0 10.6 10.6z" /></svg>);
 export const IconHeart = (p: P) => (<svg {...base(p)}><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20z" /></svg>);
 
 export const IconInstagram = (p: P) => (

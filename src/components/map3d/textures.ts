@@ -45,6 +45,31 @@ export function windowTexture() {
   return tex(c, { repeat: true });
 }
 
+/**
+ * Night-time emissive map: an 8×8 block of facade cells where roughly a
+ * third of the windows glow warm (or TV-blue). Repeat = 1/8 so the pattern
+ * varies across a facade.
+ */
+export function litWindowsTexture() {
+  const [c, g] = canvas(1024, 1024);
+  g.fillStyle = '#000';
+  g.fillRect(0, 0, 1024, 1024);
+  const rnd = mulberry(11);
+  const tones = ['#FFC46B', '#FFD58C', '#FFE7B3', '#FFB65A', '#BFD8FF'];
+  for (let cy = 0; cy < 8; cy++) {
+    for (let cx = 0; cx < 8; cx++) {
+      if (rnd() > 0.36) continue;
+      g.fillStyle = tones[Math.floor(rnd() * tones.length)];
+      g.globalAlpha = 0.55 + rnd() * 0.45;
+      g.fillRect(cx * 128 + 38, cy * 128 + 34, 52, 62);
+    }
+  }
+  g.globalAlpha = 1;
+  const t = tex(c, { repeat: true });
+  t.repeat.set(1 / 8, 1 / 8);
+  return t;
+}
+
 /** Curtain-wall glass for office towers. */
 export function glassTexture() {
   const [c, g] = canvas(64, 128);
@@ -159,7 +184,7 @@ export function brandDecal() {
 }
 
 /** Text painted onto the ground plane. Returns texture + aspect ratio. */
-export function labelTexture(text: string, color = 'rgba(15,16,17,0.55)', weight = 600) {
+export function labelTexture(text: string, color = '#ffffff', weight = 600) {
   const fontPx = 72;
   const [m, mg] = canvas(8, 8);
   void m;

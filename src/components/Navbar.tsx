@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Logo } from './ui/Logo';
-import { IconClose, IconMenu } from './ui/icons';
+import { IconClose, IconMenu, IconMoon, IconSun } from './ui/icons';
+import { useTheme } from '../hooks/useTheme';
 import type { Route } from '../router';
 import './navbar.css';
 
@@ -18,6 +19,8 @@ export default function Navbar({ route }: { route: Route }) {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('#top');
   const onHome = route.name === 'home';
+  const { theme, toggle } = useTheme();
+  const dark = theme === 'dark';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -65,6 +68,17 @@ export default function Navbar({ route }: { route: Route }) {
           ))}
         </nav>
         <div className="nav__cta">
+          <button
+            type="button"
+            className={`theme-toggle ${dark ? 'is-dark' : ''}`}
+            onClick={toggle}
+            aria-label={dark ? 'Switch to light mode' : 'Switch to night mode'}
+            aria-pressed={dark}
+            title={dark ? 'Light mode' : 'Night mode'}
+          >
+            <span className="theme-toggle__icon theme-toggle__icon--sun"><IconSun /></span>
+            <span className="theme-toggle__icon theme-toggle__icon--moon"><IconMoon /></span>
+          </button>
           <a href="#/login" className={`btn btn--glass btn--sm nav__login ${route.name === 'login' ? 'is-current' : ''}`}>
             Log in
           </a>

@@ -105,8 +105,8 @@ const DOCS: Record<LegalPage, Doc> = {
         title: '4. No cookies, no tracking',
         body: (
           <p>
-            We do not use cookies, analytics or advertising trackers, and we do not store anything on your device beyond what your browser does for the page itself.
-            All fonts are hosted on our own server, and the 3D map of Berlin is rendered locally in your browser without any third-party map service. Therefore no
+            We do not use cookies, analytics or advertising trackers. The only thing we store on your device is your light/night mode choice, in your browser’s local
+            storage, so the site remembers it (strictly necessary for a function you requested, § 25(2) no. 2 TDDDG). All fonts are hosted on our own server, and the 3D map of Berlin is rendered locally in your browser without any third-party map service. Therefore no
             consent banner is required (§ 25 TDDDG).
           </p>
         ),
@@ -128,9 +128,10 @@ const DOCS: Record<LegalPage, Doc> = {
         body: (
           <>
             <p>
-              <b>What we collect.</b> When you apply as a rider we process: name, email, mobile number, district of residence, preferred language, your
-              self-declared right-to-work status, preferred job type, languages, availability (hours, days, shifts, areas, start date), bike and smartphone
-              details, delivery experience, how you heard about us, an optional referral code and your consent choices. We do <b>not</b> ask for documents,
+              <b>What we collect.</b> When you apply as a rider we process: your legal name, email, German mobile number, Berlin district / postal area,
+              preferred working language, self-declared right-to-work status, your confirmations that you hold (or have applied for) a tax ID, have health
+              insurance, are 18 or older and will follow the StVO, your equipment preference, urban cycling experience, smartphone platform, engagement type,
+              preferred delivery windows, earliest start date, optional notes and your consent choices. We do <b>not</b> ask for documents, ID or tax numbers,
               photos, date of birth, nationality, health data or bank details at this stage.
             </p>
             <p>

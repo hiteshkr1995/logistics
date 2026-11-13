@@ -117,7 +117,7 @@
 }
 
 /* ================= Why us ================= */
-.why { position: relative; background: var(--ink); color: #fff; overflow: hidden; isolation: isolate; }
+.why { position: relative; background: var(--night); color: #fff; overflow: hidden; isolation: isolate; }
 .why__glow {
   position: absolute; z-index: -1; width: 900px; height: 900px; left: 50%; top: -420px; transform: translateX(-50%);
   background: radial-gradient(circle, rgba(10, 127, 199, 0.18), transparent 60%);
@@ -126,7 +126,7 @@
 .why__accent { color: var(--brand-light); }
 .why__lead { color: rgba(255, 255, 255, 0.68); }
 .why__grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255, 255, 255, 0.08); border-radius: var(--r-lg); overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); }
-.why__card { padding: clamp(26px, 3vw, 40px); background: var(--ink); transition: background 0.4s, opacity 0.8s var(--ease-out), transform 0.9s var(--ease-out); }
+.why__card { padding: clamp(26px, 3vw, 40px); background: var(--night); transition: background 0.4s, opacity 0.8s var(--ease-out), transform 0.9s var(--ease-out); }
 .why__card:hover { background: #1B201D; }
 .why__icon {
   width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; color: var(--brand);
@@ -191,7 +191,7 @@
 }
 .biz-float svg { width: 18px; height: 18px; color: var(--brand-700); stroke-width: 2.4; }
 .biz-float--a { left: 16px; bottom: 16px; }
-.biz-float--b { right: 16px; top: 16px; animation-delay: -3s; background: var(--ink); color: #fff; }
+.biz-float--b { right: 16px; top: 16px; animation-delay: -3s; background: var(--night); color: #fff; }
 .biz-float--b svg { color: var(--brand); }
 @media (max-width: 1023px) { .business__panel { grid-template-columns: 1fr; } .business__visual { min-height: 420px; } }
 @media (max-width: 479px) { .tab { padding: 0 10px; font-size: 13.5px; } .biz-float { display: none; } }
@@ -199,7 +199,7 @@
 /* ================= Final CTA ================= */
 .final { padding: 0 0 clamp(80px, 10vw, 120px); }
 .final__panel {
-  position: relative; overflow: hidden; isolation: isolate; border-radius: 40px; background: var(--ink); color: #fff;
+  position: relative; overflow: hidden; isolation: isolate; border-radius: 40px; background: var(--night); color: #fff;
   display: grid; grid-template-columns: 1fr 1.05fr; align-items: center; gap: 24px;
   padding: clamp(48px, 7vw, 96px) clamp(24px, 5vw, 72px);
 }

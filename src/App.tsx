@@ -9,6 +9,7 @@ import Business from './components/sections/Business';
 import FinalCta from './components/sections/FinalCta';
 import Footer from './components/Footer';
 import { DialogProvider } from './components/ui/DialogProvider';
+import { ThemeProvider } from './hooks/useTheme';
 import { useReveal } from './hooks/useReveal';
 import { useGlassPointer } from './hooks/useGlassPointer';
 import { routeKey, useRoute } from './router';
@@ -50,6 +51,7 @@ export default function App() {
   }, [key]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
+    <ThemeProvider>
     <DialogProvider>
       <a
         href="#main"
@@ -75,5 +77,6 @@ export default function App() {
       </main>
       <Footer />
     </DialogProvider>
+    </ThemeProvider>
   );
 }

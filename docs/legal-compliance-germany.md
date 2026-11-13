@@ -159,6 +159,7 @@ See section 5 for the full field-by-field plan.
 | | Type of job (Minijob / part-time / full-time / working student) | Yes | Art. 6(1)(b) | as above |
 | | Right to work in Germany: **self-declared category only, no document** | Yes | Art. 6(1)(b), §4a AufenthG | as above |
 | | Confirmation of age 18+ (a checkbox, **not** date of birth) | Yes | Art. 6(1)(b) | as above |
+| | Confirmations that a Steuer-ID is held or applied for, health insurance is active, and the rider will follow the StVO: **yes/no only, never the numbers** | Yes (per the onboarding spec) | Art. 6(1)(b) | as above |
 | | Own e-bike / own bicycle / e-bike provided; smartphone OS | Yes | Art. 6(1)(b) (bike and phone ruling) | as above |
 | | Languages, delivery experience, platforms worked on | Optional | Art. 6(1)(b) | as above |
 | | How they heard about you, referral code | Optional | Art. 6(1)(f) | as above |

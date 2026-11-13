@@ -41,7 +41,7 @@
 .field__label em { font-style: normal; font-weight: 500; color: var(--muted); }
 .field__input {
   width: 100%; min-height: 48px; padding: 12px 14px; border-radius: 14px;
-  border: 1px solid var(--line-strong); background: #fff; font: inherit; font-size: 15px; color: var(--ink);
+  border: 1px solid var(--line-strong); background: var(--field-bg); font: inherit; font-size: 15px; color: var(--ink);
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 .field__input--area { resize: vertical; min-height: 88px; }
@@ -55,7 +55,7 @@
   display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; border-radius: 999px;
   background: #fff; border: 1px solid var(--line-strong); font-size: 14px; font-weight: 500; transition: all 0.2s;
 }
-.seg__opt input:checked + span { background: var(--ink); color: #fff; border-color: var(--ink); }
+.seg__opt input:checked + span { background: var(--inv-bg); color: var(--inv-fg); border-color: var(--inv-bg); }
 .seg__opt input:focus-visible + span { box-shadow: 0 0 0 3px var(--brand); }
 
 .dlg__submit { width: 100%; margin-top: 4px; }

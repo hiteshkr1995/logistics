@@ -1,4 +1,4 @@
-.footer { background: var(--ink); color: rgba(255, 255, 255, 0.72); padding: clamp(64px, 8vw, 96px) 0 32px; scroll-margin-top: 0; overflow: hidden; }
+.footer { background: var(--night); color: rgba(255, 255, 255, 0.72); padding: clamp(64px, 8vw, 96px) 0 32px; scroll-margin-top: 0; overflow: hidden; }
 .footer__top { display: grid; grid-template-columns: 1.8fr repeat(3, 1fr); gap: 40px 32px; padding-bottom: clamp(40px, 6vw, 64px); }
 .footer__brand p { margin-top: 18px; max-width: 34ch; font-size: 15px; }
 .footer__social { list-style: none; padding: 0; margin: 24px 0 0; display: flex; gap: 10px; }

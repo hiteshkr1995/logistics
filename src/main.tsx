@@ -12,6 +12,7 @@ import '@fontsource/jetbrains-mono/500.css';
 import '@fontsource/jetbrains-mono/600.css';
 import './styles/global.css';
 import './styles/liquid.css';
+import './styles/theme-dark.css';
 import App from './App';
 
 createRoot(document.getElementById('root')!).render(

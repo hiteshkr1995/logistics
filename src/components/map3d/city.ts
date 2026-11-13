@@ -5,7 +5,7 @@
 import * as THREE from 'three';
 import { Builder, ribbon } from './geometry';
 import { COLORS, FACADES, ROOFS, TREE_GREENS } from './palette';
-import { glassTexture, streakTexture, waterTexture, windowTexture } from './textures';
+import { glassTexture, litWindowsTexture, streakTexture, waterTexture, windowTexture } from './textures';
 import { buildings, parkPaths, streets, trees } from '../map/cityGen';
 import {
   CANAL, CANAL_W, CORE, HUBS, ISLAND, PARKS, PLAZAS, RIVER, RIVER_W, SIEGES, STERN_R, inRect,
@@ -17,6 +17,7 @@ export interface CityParts {
   group: THREE.Group;
   /** called every frame with elapsed seconds */
   tick: (t: number) => void;
+  setNight: (night: boolean) => void;
 }
 
 function std(color: string | undefined, opts: THREE.MeshStandardMaterialParameters = {}) {
@@ -152,7 +153,8 @@ export function buildCity(): CityParts {
     }
   }
   const winTex = windowTexture();
-  const wallMesh = new THREE.Mesh(walls.build(true), std(undefined, { vertexColors: true, map: winTex, roughness: 0.85 }));
+  const wallMat = std(undefined, { vertexColors: true, map: winTex, roughness: 0.85, emissive: '#000000', emissiveMap: litWindowsTexture() });
+  const wallMesh = new THREE.Mesh(walls.build(true), wallMat);
   const glassMesh = new THREE.Mesh(glass.build(true), std('#ffffff', { map: glassTexture(), roughness: 0.25, metalness: 0.35, envMapIntensity: 1.2 }));
   const roofMesh = new THREE.Mesh(roofs.build(), std(undefined, { vertexColors: true }));
   for (const m of [wallMesh, glassMesh, roofMesh]) {
@@ -193,6 +195,12 @@ export function buildCity(): CityParts {
     group,
     tick: (t: number) => {
       streakTex.offset.x = -t * 0.035;
+    },
+    setNight: (night: boolean) => {
+      wallMat.emissive.set(night ? '#FFFFFF' : '#000000');
+      wallMat.emissiveIntensity = night ? 1.15 : 0;
+      waterMat.color.set(night ? '#4F6E88' : '#FFFFFF');
+      streakMat.opacity = night ? 0.45 : 0.8;
     },
   };
 }

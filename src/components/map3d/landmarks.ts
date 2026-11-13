@@ -7,7 +7,7 @@
 import * as THREE from 'three';
 import { Builder } from './geometry';
 import { COLORS } from './palette';
-import { brandDecal, glassTexture, windowTexture } from './textures';
+import { brandDecal, glassTexture, litWindowsTexture, windowTexture } from './textures';
 import { HUBS } from '../map/world';
 import { createBike } from './bikes';
 
@@ -293,7 +293,8 @@ export function buildLandmarks() {
     for (let k = 0; k < 3; k++) box(b.x0 + 0.72 + k * 0.62, b.y1 + 0.18, b.x0 + 0.78 + k * 0.62, b.y1 + 0.24, 0, 0.32, M.brand);
   });
 
-  const fac = new THREE.Mesh(facades.build(true), new THREE.MeshStandardMaterial({ vertexColors: true, map: windowTexture(), roughness: 0.85 }));
+  const facMat = new THREE.MeshStandardMaterial({ vertexColors: true, map: windowTexture(), roughness: 0.85, emissive: '#000000', emissiveMap: litWindowsTexture() });
+  const fac = new THREE.Mesh(facades.build(true), facMat);
   const facRoof = new THREE.Mesh(facadeRoofs.build(), new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.9 }));
   for (const m of [fac, facRoof]) {
     m.castShadow = true;
@@ -301,5 +302,12 @@ export function buildLandmarks() {
     group.add(m);
   }
 
-  return { group };
+  const setNight = (night: boolean) => {
+    facMat.emissive.set(night ? '#FFFFFF' : '#000000');
+    facMat.emissiveIntensity = night ? 1.1 : 0;
+    M.beacon.color.set(night ? '#FF3B30' : '#FF5A4D');
+    (M.decal as THREE.MeshStandardMaterial).emissive.set(night ? '#2A3A48' : '#000000');
+  };
+
+  return { group, setNight };
 }

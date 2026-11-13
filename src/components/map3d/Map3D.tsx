@@ -24,12 +24,14 @@ function framing(layout: MapLayout, w: number, h: number): View & { shift: numbe
 const LIMITS = { minR: 18, maxR: 120, minPhi: 0.3, maxPhi: 1.2, x0: 0, x1: 55, z0: 2, z1: 40 };
 const ease = (k: number) => 1 - Math.pow(1 - k, 3);
 
-export default function Map3D({ layout, reducedMotion, onFail }: { layout: MapLayout; reducedMotion: boolean; onFail: () => void }) {
+export default function Map3D({ layout, reducedMotion, onFail, night = false }: { layout: MapLayout; reducedMotion: boolean; onFail: () => void; night?: boolean }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const markerRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
   const api = useRef<{ zoom: (f: number) => void; rotate: (d: number) => void; reset: () => void; pan: (dx: number, dz: number) => void } | null>(null);
   const [markers, setMarkers] = useState<MarkerDef[]>([]);
   const [ready, setReady] = useState(false);
+  const nightRef = useRef(night);
+  const live = useRef<{ setNight: (n: boolean) => void } | null>(null);
 
   useEffect(() => {
     const wrap = wrapRef.current;
@@ -73,6 +75,12 @@ export default function Map3D({ layout, reducedMotion, onFail }: { layout: MapLa
 
     let frame = { ...framing(layout, wrap.clientWidth, wrap.clientHeight) };
     const scene = buildScene(renderer, { compact: layout === 'compact', shadowSize: small ? 2048 : 4096 });
+    const applyNight = (n: boolean) => {
+      scene.setNight(n);
+      renderer.toneMappingExposure = n ? 1.12 : 1.02;
+    };
+    applyNight(nightRef.current);
+    live.current = { setNight: applyNight };
     setMarkers(scene.markers);
 
     const sph = new THREE.Spherical();
@@ -249,8 +257,15 @@ export default function Map3D({ layout, reducedMotion, onFail }: { layout: MapLa
       renderer.dispose();
       renderer.domElement.remove();
       api.current = null;
+      live.current = null;
     };
   }, [layout, reducedMotion, onFail]);
+
+  // Switch lighting in place — no scene rebuild, camera stays where it is.
+  useEffect(() => {
+    nightRef.current = night;
+    live.current?.setNight(night);
+  }, [night]);
 
   const onKey = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.target !== e.currentTarget || !api.current) return;

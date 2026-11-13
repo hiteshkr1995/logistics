@@ -26,6 +26,8 @@ export interface BerlinScene {
   sun: THREE.DirectionalLight;
   markers: MarkerDef[];
   update: (t: number, animate: boolean) => void;
+  /** Switch between daylight and night (moonlight, lit windows). */
+  setNight: (night: boolean) => void;
   dispose: () => void;
 }
 
@@ -41,7 +43,8 @@ export function buildScene(renderer: THREE.WebGLRenderer, opts: { compact: boole
   pmrem.dispose();
 
   /* Lighting: warm sun from the west, cool sky fill */
-  scene.add(new THREE.HemisphereLight('#FFF8EC', '#A9B5BF', 0.95));
+  const hemi = new THREE.HemisphereLight('#FFF8EC', '#A9B5BF', 0.95);
+  scene.add(hemi);
   const sun = new THREE.DirectionalLight('#FFEFD6', 3.1);
   sun.position.set(-18, 34, 8);
   sun.target.position.set(27, 0, 20);
@@ -56,7 +59,8 @@ export function buildScene(renderer: THREE.WebGLRenderer, opts: { compact: boole
 
   const city = buildCity();
   scene.add(city.group);
-  scene.add(buildLandmarks().group);
+  const landmarks = buildLandmarks();
+  scene.add(landmarks.group);
 
   /* Service zone around Mitte */
   const zone = new THREE.Group();
@@ -96,16 +100,18 @@ export function buildScene(renderer: THREE.WebGLRenderer, opts: { compact: boole
   beamCore.position.copy(beam.position);
   scene.add(beam, beamCore);
 
+  const labelMats: { mat: THREE.MeshBasicMaterial; zone: boolean }[] = [];
   /* Ground labels (district names) — painted over the city like a hologram */
   const labels = DISTRICT_LABELS.filter((d) => !opts.compact || d.compact);
   for (const d of [...labels, { x: MITTE_ZONE.x - 3.6, y: MITTE_ZONE.y + MITTE_ZONE.r - 1.4, text: 'SAME-DAY ZONE · MITTE' }]) {
     const zoneLabel = d.text.startsWith('SAME');
-    const { texture, aspect } = labelTexture(d.text, zoneLabel ? 'rgba(5,90,143,0.95)' : 'rgba(15,16,17,0.62)');
+    const { texture, aspect } = labelTexture(d.text);
     const h = zoneLabel ? 0.75 : 1.25;
     const mesh = new THREE.Mesh(
       new THREE.PlaneGeometry(h * aspect, h),
-      new THREE.MeshBasicMaterial({ map: texture, transparent: true, depthTest: false, depthWrite: false }),
+      new THREE.MeshBasicMaterial({ map: texture, transparent: true, depthTest: false, depthWrite: false, color: zoneLabel ? '#055A8F' : '#0F1011', opacity: zoneLabel ? 0.95 : 0.62 }),
     );
+    labelMats.push({ mat: mesh.material as THREE.MeshBasicMaterial, zone: zoneLabel });
     mesh.rotation.x = -Math.PI / 2;
     mesh.position.set(d.x + (h * aspect) / 2, 0.07, d.y);
     mesh.renderOrder = 4;
@@ -180,6 +186,25 @@ export function buildScene(renderer: THREE.WebGLRenderer, opts: { compact: boole
     }
   };
 
+  const setNight = (night: boolean) => {
+    const sky = night ? '#0B0F12' : COLORS.sky;
+    (scene.background as THREE.Color).set(sky);
+    (scene.fog as THREE.Fog).color.set(sky);
+    hemi.color.set(night ? '#6E86A8' : '#FFF8EC');
+    hemi.groundColor.set(night ? '#0E1318' : '#A9B5BF');
+    hemi.intensity = night ? 0.6 : 0.95;
+    sun.color.set(night ? '#A9C4F0' : '#FFEFD6');
+    sun.intensity = night ? 0.85 : 3.1;
+    scene.environmentIntensity = night ? 0.16 : 0.42;
+    city.setNight(night);
+    landmarks.setNight(night);
+    for (const l of labelMats) {
+      l.mat.color.set(l.zone ? (night ? '#7CC3EE' : '#055A8F') : night ? '#E8E6DA' : '#0F1011');
+      l.mat.opacity = l.zone ? 0.95 : night ? 0.5 : 0.62;
+    }
+    beamMat.opacity = night ? 1 : 0.8;
+  };
+
   const dispose = () => {
     env.dispose();
     scene.traverse((o) => {
@@ -195,5 +220,5 @@ export function buildScene(renderer: THREE.WebGLRenderer, opts: { compact: boole
     });
   };
 
-  return { scene, sun, markers, update, dispose };
+  return { scene, sun, markers, update, setNight, dispose };
 }

@@ -1,6 +1,7 @@
 import { Suspense, lazy, useCallback, useState } from 'react';
 import type { MapLayout } from './map/BerlinMap';
 import { useMediaQuery, useReducedMotion } from '../hooks/useMediaQuery';
+import { useTheme } from '../hooks/useTheme';
 import { IconArrow, IconBike, IconClock, IconLeaf } from './ui/icons';
 import './hero.css';
 
@@ -23,6 +24,7 @@ export default function Hero() {
   const reducedMotion = useReducedMotion();
   const layout: MapLayout = desktop ? 'desktop' : phone ? 'compact' : 'stacked';
   const [webglFailed, setWebglFailed] = useState(false);
+  const { theme } = useTheme();
   const onFail = useCallback(() => setWebglFailed(true), []);
 
   return (
@@ -32,7 +34,7 @@ export default function Hero() {
           {webglFailed ? (
             <BerlinMap layout={layout} reducedMotion={reducedMotion} />
           ) : (
-            <Map3D layout={layout} reducedMotion={reducedMotion} onFail={onFail} />
+            <Map3D layout={layout} reducedMotion={reducedMotion} onFail={onFail} night={theme === 'dark'} />
           )}
         </Suspense>
         <div className="hero__status lg-glass" data-glass role="status">
