@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Single-page marketing site for **ON-SPREE** (ON SPREE Logistics UG), a Berlin e-cargo-bike delivery company. The stack is Vite 5, React 18 and TypeScript, with plain CSS (no CSS framework). Runtime dependencies are `react`, `react-dom` and `three` (pinned to 0.169), which powers the 3D hero map.
+Single-page marketing site for **ON-SPREE** (ON SPREE Logistics UG), a Berlin e-cargo-bike delivery company. The stack is Vite 5, React 18 and TypeScript, with plain CSS (no CSS framework). Runtime dependencies are `react`, `react-dom`, `three` (pinned to 0.169, powers the 3D hero map) and `@fontsource/*` (self-hosted fonts — never load Google Fonts from Google, see the compliance notes).
+
+The business is just starting as a rider fleet (working with Uber Eats), so the site must not offer delivery bookings: calls to action are **Join as a Rider** (`#/join`), **Log in** (`#/login`) and **Talk to our team** (business enquiry dialog). German legal/compliance requirements are summarised in `docs/legal-compliance-germany.md`; the legal name must always read `ON-SPREE Logistics UG (haftungsbeschränkt)`.
 
 Brand colours come from the client's logo: cream `#EFEEE0`, Spree blue `#0A7FC7` and black. The client asked for the site not to resemble Uber Eats, so keep green out of brand accents (park greens on the map are fine). The modernised logo lives in `components/ui/Logo.tsx` (`LogoMark`, `Logo`, `LogoBadge`) and in `public/favicon.svg`.
 
@@ -25,10 +27,14 @@ On every push to `main`, `.github/workflows/deploy.yml` builds the site and publ
 
 ## Architecture
 
-`src/App.tsx` composes `Navbar`, `Hero`, the sections in `components/sections/` and `Footer`, all inside `DialogProvider`.
+`src/App.tsx` renders `Navbar`, then either the landing page (`Hero` + `components/sections/*`) or a lazily loaded page, then `Footer`, all inside `DialogProvider`.
 
-- **Dialogs:** every CTA opens one native `<dialog>` through `useOpenDialog()(mode)`. The modes are booking, partner, team, privacy, terms and imprint. Form submit is front-end only (`submit` in `components/ui/DialogProvider.tsx`) and still needs a backend.
+- **Routing:** `src/router.ts` is a tiny hash router. Hashes starting with `#/` are pages: `#/join` (`pages/JoinRider.tsx`), `#/login`, `#/login/rider`, `#/login/business` (`pages/Login.tsx`), and `#/privacy`, `#/imprint`, `#/terms`, `#/legal`, `#/trademarks` (`pages/Legal.tsx`). Plain hashes like `#services` stay on the landing page and scroll to that section. This works on GitHub Pages without server rewrites.
+- **Config:** `src/config.ts` holds company facts (legal name, contact details, Impressum placeholders), Berlin `AREAS` (used by Coverage and the rider form), and the `ENDPOINTS` read from `VITE_*` env vars.
+- **Forms are honest:** rider application, business enquiry and logins POST or redirect only when the matching `ENDPOINTS` value is set. Otherwise they tell the user that nothing was sent or stored. Never fake a success state.
+- **Dialogs:** only the business enquiry (`useOpenDialog()('team')`) is a dialog; everything else is a page.
 - **Scroll reveal:** `useReveal()` adds `.is-in` to any `[data-reveal]` element once it scrolls into view. Set `--rd` inline for a stagger delay.
+- **Liquid glass:** `src/styles/liquid.css` defines `.lg-glass` (rotating rim and pointer-following highlight), `.lg-card`, `.lg-chip`, `.lg-glass-dark`, `.btn--glass` / `.btn--glass-dark`, and `<LiquidBackdrop />` blobs for sections with `.has-liquid`. Add `data-glass` to an element for the pointer highlight (`hooks/useGlassPointer.ts`).
 - **CSS:** `src/styles/global.css` holds the tokens (`--brand*`, `--cream`, `--ink`, `--paper`, the fonts, the easing curves) and utilities like `.btn--primary` and `.glass-btn`. Each component imports its own global (non-module) CSS file. `main.tsx` imports `global.css` before `App`, so component rules win over global ones of equal specificity. Keep that import order.
 
 ### Hero map

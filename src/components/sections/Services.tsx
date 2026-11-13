@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react';
-import { IconArrowUpRight, IconBolt, IconBuilding, IconCalendar, IconClock, IconLeaf, IconRoute } from '../ui/icons';
-import { useOpenDialog } from '../ui/DialogProvider';
+import { LiquidBackdrop } from '../ui/LiquidBackdrop';
+import { IconBolt, IconBuilding, IconCalendar, IconClock, IconLeaf, IconRoute } from '../ui/icons';
 
 interface Service {
   icon: ReactElement;
@@ -20,9 +20,9 @@ const SERVICES: Service[] = [
 ];
 
 export default function Services() {
-  const openDialog = useOpenDialog();
   return (
-    <section id="services" className="section services" aria-labelledby="services-title">
+    <section id="services" className="section services has-liquid" aria-labelledby="services-title">
+      <LiquidBackdrop />
       <div className="container">
         <div className="section-head" data-reveal>
           <div>
@@ -37,25 +37,20 @@ export default function Services() {
         </div>
         <div className="svc-grid">
           {SERVICES.map((s, i) => (
-            <button
-              type="button"
+            <article
               key={s.title}
-              className={`svc-card ${s.featured ? 'svc-card--featured' : ''}`}
+              className={`svc-card lg-card ${s.featured ? 'svc-card--featured' : ''}`}
               data-reveal
+              data-glass
               style={{ ['--rd' as string]: `${(i % 3) * 0.08}s` }}
-              onClick={() => openDialog('booking')}
-              aria-label={`${s.title} — book this service`}
             >
               <span className="svc-card__top">
                 <span className="svc-card__icon">{s.icon}</span>
                 <span className="svc-card__tag">{s.tag}</span>
               </span>
-              <span className="svc-card__title">{s.title}</span>
-              <span className="svc-card__text">{s.text}</span>
-              <span className="svc-card__more">
-                Book this <IconArrowUpRight />
-              </span>
-            </button>
+              <h3 className="svc-card__title">{s.title}</h3>
+              <p className="svc-card__text">{s.text}</p>
+            </article>
           ))}
         </div>
       </div>

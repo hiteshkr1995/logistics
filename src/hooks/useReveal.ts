@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 /** Adds `.is-in` to every `[data-reveal]` element once it scrolls into view. */
-export function useReveal() {
+export function useReveal(dep?: unknown) {
   useEffect(() => {
     const els = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
@@ -21,5 +21,5 @@ export function useReveal() {
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, []);
+  }, [dep]);
 }

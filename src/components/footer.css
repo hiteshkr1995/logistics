@@ -1,5 +1,5 @@
 .footer { background: var(--ink); color: rgba(255, 255, 255, 0.72); padding: clamp(64px, 8vw, 96px) 0 32px; scroll-margin-top: 0; overflow: hidden; }
-.footer__top { display: grid; grid-template-columns: 1.6fr repeat(4, 1fr); gap: 40px 32px; }
+.footer__top { display: grid; grid-template-columns: 1.8fr repeat(3, 1fr); gap: 40px 32px; padding-bottom: clamp(40px, 6vw, 64px); }
 .footer__brand p { margin-top: 18px; max-width: 34ch; font-size: 15px; }
 .footer__social { list-style: none; padding: 0; margin: 24px 0 0; display: flex; gap: 10px; }
 .footer__social a {
@@ -27,10 +27,14 @@
 .footer__badge p { font-family: var(--display); font-weight: 700; font-size: clamp(22px, 3.4vw, 44px); letter-spacing: -0.03em; line-height: 1.05; color: var(--cream); }
 @media (max-width: 639px) { .footer__badge { flex-direction: column; align-items: flex-start; } .footer__badge-svg { width: 100%; } }
 .footer__bottom {
-  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-top: 24px; margin-top: -8px;
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-top: 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 14px;
 }
 .footer__bottom ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px 24px; }
 .footer__bottom button { font-size: 14px; }
-@media (max-width: 1023px) { .footer__top { grid-template-columns: repeat(3, 1fr); } .footer__brand { grid-column: 1 / -1; } }
-@media (max-width: 639px) { .footer__top { grid-template-columns: 1fr 1fr; } .footer__contact { grid-column: 1 / -1; } }
+@media (max-width: 899px) { .footer__top { grid-template-columns: repeat(3, 1fr); } .footer__brand { grid-column: 1 / -1; } }
+@media (max-width: 559px) { .footer__top { grid-template-columns: 1fr 1fr; } .footer__contact { grid-column: 1 / -1; } }
+
+.footer__bottom ul a { color: rgba(255, 255, 255, 0.72); font-size: 14px; transition: color 0.2s; }
+.footer__bottom ul a:hover { color: var(--brand-light); }
+.footer__brand p { max-width: 30ch; }

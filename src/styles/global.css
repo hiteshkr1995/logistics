@@ -138,3 +138,4 @@ p { margin: 0; }
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
   [data-reveal] { opacity: 1; transform: none; }
 }
+.nowrap { white-space: nowrap; }

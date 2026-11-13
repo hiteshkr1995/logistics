@@ -1,6 +1,6 @@
 # ON-SPREE — Berlin e-bike delivery landing page
 
-A landing page for **ON SPREE Logistics UG**, a last-mile e-cargo-bike delivery company in Berlin. The hero is a real-time 3D map of the city: delivery bikes ride the streets between micro-hubs and drop-offs, past the Brandenburger Tor, Reichstag, Berliner Dom, Fernsehturm, Siegessäule and Oberbaumbrücke.
+A website for **ON-SPREE Logistics UG (haftungsbeschränkt)**, a Berlin e-bike delivery fleet. It recruits riders and introduces the company to businesses. The hero is a real-time 3D map of the city: delivery bikes ride the streets between micro-hubs and drop-offs, past the Brandenburger Tor, Reichstag, Berliner Dom, Fernsehturm, Siegessäule and Oberbaumbrücke.
 
 Brand colours come from the ON SPREE logo: cream `#EFEEE0`, Spree blue `#0A7FC7` and black.
 
@@ -22,7 +22,15 @@ npm run build     # type-check, then build to dist/
 npm run preview   # serve the production build
 ```
 
-## Page sections
+## Pages
+
+- `#/join`: a five-step rider application with GDPR consents
+- `#/login`: a chooser, plus separate `#/login/rider` and `#/login/business` pages
+- `#/privacy`, `#/imprint`, `#/terms`, `#/legal`, `#/trademarks`: legal pages (drafts with placeholders)
+
+Legal and compliance notes for Germany are in [docs/legal-compliance-germany.md](docs/legal-compliance-germany.md).
+
+## Landing page sections
 
 1. **Hero:** an interactive 3D Berlin map. Drag to pan, right-drag or two fingers to rotate, and pinch or ctrl/⌘ + scroll to zoom. Hover the pins and landmarks for labels.
 2. **Our Services:** same-day, express, business logistics, last-mile, scheduled and sustainable delivery.
@@ -57,6 +65,12 @@ src/
 
 ## Before going live
 
-- **Forms:** booking, partner and contact forms are front-end only. Connect the submit handler in `src/components/ui/DialogProvider.tsx` to your backend.
-- **Placeholders:** replace the email, phone, address, social links and legal text with real details.
-- **Fonts:** they load from Google Fonts. For GDPR compliance in Germany, consider self-hosting them.
+- **Company details:** fill in the real Impressum data, email and phone in `src/config.ts`.
+- **Forms:** connect them by setting these environment variables at build time, each pointing to an EU-hosted backend with a data processing agreement (AVV):
+  - `VITE_RIDER_APPLY_ENDPOINT`
+  - `VITE_BUSINESS_ENQUIRY_ENDPOINT`
+  - `VITE_RIDER_PORTAL_URL`
+  - `VITE_BUSINESS_PORTAL_URL`
+
+  Until then, the forms tell visitors that nothing is sent.
+- **Legal review:** have a lawyer review the legal pages and the checklist in `docs/legal-compliance-germany.md`.

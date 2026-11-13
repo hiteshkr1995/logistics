@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Logo } from './ui/Logo';
 import { IconClose, IconMenu } from './ui/icons';
-import { useOpenDialog } from './ui/DialogProvider';
+import type { Route } from '../router';
 import './navbar.css';
 
 export const NAV_LINKS = [
@@ -13,11 +13,11 @@ export const NAV_LINKS = [
   { href: '#contact', label: 'Contact' },
 ];
 
-export default function Navbar() {
+export default function Navbar({ route }: { route: Route }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('#top');
-  const openDialog = useOpenDialog();
+  const onHome = route.name === 'home';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -26,8 +26,9 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Highlight the section currently in view
+  // Highlight the section currently in view (landing page only)
   useEffect(() => {
+    if (!onHome) return;
     const ids = NAV_LINKS.map((l) => l.href.slice(1));
     const els = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
     const io = new IntersectionObserver(
@@ -39,7 +40,9 @@ export default function Navbar() {
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, []);
+  }, [onHome]);
+
+  useEffect(() => setOpen(false), [route]);
 
   useEffect(() => {
     if (!open) return;
@@ -48,21 +51,26 @@ export default function Navbar() {
     return () => document.removeEventListener('keydown', onKey);
   }, [open]);
 
+  const isActive = (href: string) => onHome && active === href;
+
   return (
-    <header className={`nav ${scrolled || open ? 'nav--solid' : ''} ${open ? 'nav--open' : ''}`}>
-      <div className="nav__inner">
+    <header className={`nav ${scrolled || open || !onHome ? 'nav--solid' : ''} ${open ? 'nav--open' : ''}`}>
+      <div className="nav__inner lg-glass" data-glass>
         <Logo />
         <nav className="nav__links" aria-label="Primary">
           {NAV_LINKS.map((l) => (
-            <a key={l.href} href={l.href} className={active === l.href ? 'is-active' : ''} aria-current={active === l.href ? 'true' : undefined}>
+            <a key={l.href} href={l.href} className={isActive(l.href) ? 'is-active' : ''} aria-current={isActive(l.href) ? 'true' : undefined}>
               {l.label}
             </a>
           ))}
         </nav>
         <div className="nav__cta">
-          <button type="button" className="btn btn--primary btn--sm" onClick={() => openDialog('booking')}>
-            Book a Delivery
-          </button>
+          <a href="#/login" className={`btn btn--glass btn--sm nav__login ${route.name === 'login' ? 'is-current' : ''}`}>
+            Log in
+          </a>
+          <a href="#/join" className="btn btn--primary btn--sm nav__join">
+            Join as a Rider
+          </a>
           <button
             type="button"
             className="nav__burger"
@@ -75,7 +83,7 @@ export default function Navbar() {
           </button>
         </div>
       </div>
-      <div id="mobile-menu" className="nav__sheet" hidden={!open}>
+      <div id="mobile-menu" className="nav__sheet lg-glass" hidden={!open}>
         <nav aria-label="Mobile">
           {NAV_LINKS.map((l, i) => (
             <a key={l.href} href={l.href} onClick={() => setOpen(false)} style={{ ['--i' as string]: i }}>
@@ -83,16 +91,14 @@ export default function Navbar() {
             </a>
           ))}
         </nav>
-        <button
-          type="button"
-          className="btn btn--primary btn--lg"
-          onClick={() => {
-            setOpen(false);
-            openDialog('booking');
-          }}
-        >
-          Book a Delivery
-        </button>
+        <div className="nav__sheet-ctas">
+          <a href="#/join" className="btn btn--primary btn--lg" onClick={() => setOpen(false)}>
+            Join as a Rider
+          </a>
+          <a href="#/login" className="btn btn--glass btn--lg" onClick={() => setOpen(false)}>
+            Log in
+          </a>
+        </div>
       </div>
     </header>
   );
