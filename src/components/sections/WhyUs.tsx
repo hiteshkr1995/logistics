@@ -11,7 +11,7 @@ const BENEFITS = [
 
 export default function WhyUs() {
   return (
-    <section id="why" className="section why" aria-labelledby="why-title">
+    <section id="why" className="section why" aria-labelledby="why-title" data-nav-dark>
       <div className="why__glow" aria-hidden="true" />
       <div className="container">
         <div className="section-head" data-reveal>

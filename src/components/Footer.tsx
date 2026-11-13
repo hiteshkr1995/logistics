@@ -22,7 +22,7 @@ const LEGAL = [
 export default function Footer() {
   const openDialog = useOpenDialog();
   return (
-    <footer id="contact" className="footer" aria-labelledby="footer-title">
+    <footer id="contact" className="footer" aria-labelledby="footer-title" data-nav-dark>
       <h2 id="footer-title" className="sr-only">Contact and site information</h2>
       <div className="container">
         <div className="footer__top">

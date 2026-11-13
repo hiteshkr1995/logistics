@@ -18,16 +18,38 @@ export default function Navbar({ route }: { route: Route }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('#top');
+  const [onDark, setOnDark] = useState(false);
   const onHome = route.name === 'home';
   const { theme, toggle } = useTheme();
   const dark = theme === 'dark';
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
+    // Track scroll position and whether a dark section ([data-nav-dark]) sits
+    // behind the floating bar, so the glass can switch to a dark tint.
+    let raf = 0;
+    const check = () => {
+      raf = 0;
+      setScrolled(window.scrollY > 24);
+      const y = 40; // vertical centre of the bar
+      setOnDark(
+        Array.from(document.querySelectorAll('[data-nav-dark]')).some((el) => {
+          const r = el.getBoundingClientRect();
+          return r.top <= y && r.bottom >= y;
+        }),
+      );
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(check);
+    };
+    check();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+    window.addEventListener('resize', onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, [route]);
 
   // Highlight the section currently in view (landing page only)
   useEffect(() => {
@@ -57,8 +79,8 @@ export default function Navbar({ route }: { route: Route }) {
   const isActive = (href: string) => onHome && active === href;
 
   return (
-    <header className={`nav ${scrolled || open || !onHome ? 'nav--solid' : ''} ${open ? 'nav--open' : ''}`}>
-      <div className="nav__inner lg-glass" data-glass>
+    <header className={`nav ${scrolled || open || !onHome ? 'nav--solid' : ''} ${open ? 'nav--open' : ''} ${onDark && !open ? 'nav--on-dark' : ''}`}>
+      <div className="nav__inner lg-glass lg-glass--strong" data-glass>
         <Logo />
         <nav className="nav__links" aria-label="Primary">
           {NAV_LINKS.map((l) => (

@@ -9,7 +9,7 @@ export default function FinalCta() {
   return (
     <section className="final" aria-labelledby="final-title">
       <div className="container">
-        <div className="final__panel" data-reveal>
+        <div className="final__panel" data-reveal data-nav-dark>
           <div className="final__glow" aria-hidden="true" />
           <div className="final__content">
             <span className="eyebrow eyebrow--light">Start today</span>
