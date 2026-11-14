@@ -200,7 +200,7 @@
 .final { padding: clamp(56px, 7vw, 96px) 0 0; } /* sits directly under the hero */
 .final__panel {
   position: relative; overflow: hidden; isolation: isolate; border-radius: 40px; background: var(--night); color: #fff;
-  display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr); align-items: center; gap: clamp(32px, 4vw, 64px);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); align-items: center; gap: 24px;
   padding: clamp(48px, 6vw, 88px) clamp(28px, 5vw, 72px);
 }
 .final__glow {
@@ -213,10 +213,10 @@
 .final h2 { font-size: clamp(38px, 4.6vw, 68px); text-wrap: balance; font-weight: 800; letter-spacing: -0.045em; line-height: 0.98; margin: 20px 0 22px; }
 .final p { color: rgba(255, 255, 255, 0.72); font-size: clamp(17px, 1.6vw, 20px); margin-bottom: 32px; }
 .final__ctas { display: flex; flex-wrap: wrap; gap: 12px; }
-.final__bike { width: 100%; max-width: 600px; height: auto; justify-self: end; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.45)); }
+.final__bike { width: 118%; max-width: none; margin: -20px -14% -60px 0; height: auto; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.45)); }
 @media (max-width: 1023px) {
   .final__panel { grid-template-columns: 1fr; }
-  .final__bike { justify-self: center; max-width: 520px; }
+  .final__bike { width: 100%; margin: 0 auto -30px; max-width: 560px; }
 }
 @media (max-width: 639px) { .final__panel { border-radius: 28px; } .final__ctas .btn { width: 100%; } }
 
