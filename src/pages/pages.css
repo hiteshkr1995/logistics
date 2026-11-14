@@ -43,7 +43,7 @@
 .join-step { border: 0; padding: 0; margin: 0; display: grid; gap: 22px; min-width: 0; animation: step-in 0.5s var(--ease-out); }
 .join-step[hidden] { display: none; }
 @keyframes step-in { from { opacity: 0; transform: translateX(16px); } }
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
 @media (max-width: 559px) { .form-grid { grid-template-columns: 1fr; } }
 .form-note { font-size: 13.5px; color: var(--muted); margin-top: -10px; }
 .form-note a { color: var(--brand-700); }
@@ -204,3 +204,31 @@
   .join { display: block; }
   .join__card { box-shadow: none; background: #fff; }
 }
+
+/* ---------- Searchable district / postal-code picker ---------- */
+.combo-wrap { display: grid; gap: 12px; min-width: 0; }
+.combo-anchor { position: relative; }
+.combo__control { position: relative; display: block; }
+.combo__icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--brand-700); pointer-events: none; }
+.combo__input { padding-left: 40px; padding-right: 38px; text-overflow: ellipsis; }
+.combo__chev {
+  position: absolute; right: 16px; top: 50%; width: 8px; height: 8px; margin-top: -6px; pointer-events: none;
+  border-right: 2px solid var(--ink-soft); border-bottom: 2px solid var(--ink-soft); transform: rotate(45deg);
+}
+.combo__list {
+  position: absolute; z-index: 20; top: calc(100% - 4px); left: 0; right: 0; margin: 0; padding: 6px; list-style: none;
+  max-height: 300px; overflow-y: auto; overflow-x: hidden; border-radius: 16px; min-width: 280px;
+  animation: combo-in 0.2s var(--ease-out);
+}
+@keyframes combo-in { from { opacity: 0; transform: translateY(-6px); } }
+.combo__opt {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 10px 12px; border-radius: 12px; cursor: pointer; font-size: 14.5px;
+}
+.combo__opt strong { display: block; font-weight: 600; color: var(--ink); }
+.combo__opt small { display: block; font: 500 12px var(--mono); color: var(--muted); margin-top: 2px; }
+.combo__opt.is-active { background: rgba(10, 127, 199, 0.1); }
+.combo__opt[aria-selected='true'] strong { color: var(--brand-700); }
+.combo__opt--other { margin-top: 4px; border-top: 1px dashed var(--line-strong); border-radius: 0 0 12px 12px; }
+.combo__tick { width: 16px; height: 16px; color: var(--brand-700); flex: none; stroke-width: 2.6; }
+.combo__other { animation: step-in 0.35s var(--ease-out); }

@@ -2,21 +2,12 @@ import { useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react
 import { COMPANY, ENDPOINTS } from '../config';
 import { IconArrow, IconBike, IconCheck, IconClock, IconHeart, IconPhone, IconShield } from '../components/ui/icons';
 import { LiquidBackdrop } from '../components/ui/LiquidBackdrop';
+import { DistrictPicker } from './DistrictPicker';
 import './pages.css';
 
 /* ---------- Spec: ON-SPREE Logistics rider onboarding (4 stages) ---------- */
 const STAGES = ['Personal & contact', 'Work eligibility', 'E-bike & road', 'Shifts & submit'];
 
-const DISTRICTS = [
-  'Mitte / Tiergarten (10115, 10117, 10178)',
-  'Friedrichshain-Kreuzberg (10243, 10997)',
-  'Prenzlauer Berg / Pankow (10405, 10437)',
-  'Charlottenburg-Wilmersdorf (10585, 10623)',
-  'Neukölln (12043, 12049)',
-  'Schöneberg / Tempelhof (10777, 12101)',
-  'Wedding / Moabit (13347, 10551)',
-  'Spandau / Reinickendorf (13581, 13403)',
-];
 const LANGUAGES = ['Bilingual (English & German)', 'English', 'German (Deutsch)'];
 const WORK_RIGHTS = [
   'EU / EEA / Swiss Citizen (Unlimited Work Right)',
@@ -137,6 +128,8 @@ export default function JoinRider() {
       const boxes = g.querySelectorAll<HTMLInputElement>('input[type=checkbox]');
       boxes[0].setCustomValidity(Array.from(boxes).some((b) => b.checked) ? '' : 'Please choose at least one option.');
     }
+    const combo = fs.querySelector<HTMLInputElement>('input[data-combobox]');
+    if (combo) combo.setCustomValidity(combo.dataset.valid === '1' ? '' : 'Please choose your district from the list, or choose “Other” and enter your postal code.');
     const phone = fs.querySelector<HTMLInputElement>('input[name=phone]');
     if (phone) phone.setCustomValidity(/^\+49[\d\s]{8,16}$/.test(phone.value.trim()) ? '' : 'Please enter a German mobile number starting with +49.');
     const bad = Array.from(fs.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input, select, textarea')).find((f) => !f.checkValidity());
@@ -319,8 +312,8 @@ export default function JoinRider() {
                   defaultValue="+49 "
                   hint="Must start with +49"
                 />
+                <DistrictPicker />
                 <div className="form-grid">
-                  <Select label="Current Berlin district / postal code" name="district" options={DISTRICTS} />
                   <Select label="Preferred working language" name="language" options={LANGUAGES} defaultValue={LANGUAGES[0]} />
                 </div>
               </fieldset>
