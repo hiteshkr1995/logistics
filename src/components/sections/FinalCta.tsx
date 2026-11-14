@@ -7,7 +7,7 @@ export default function FinalCta() {
   const openDialog = useOpenDialog();
   const reduced = useReducedMotion();
   return (
-    <section className="final" aria-labelledby="final-title">
+    <section id="start" className="final" aria-labelledby="final-title">
       <div className="container">
         <div className="final__panel" data-reveal data-nav-dark>
           <div className="final__glow" aria-hidden="true" />

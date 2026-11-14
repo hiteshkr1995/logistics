@@ -74,11 +74,11 @@
 .nav__sheet nav a:hover { background: rgba(20, 24, 22, 0.05); }
 @keyframes sheet { from { opacity: 0; transform: translateY(-8px); } }
 
-@media (max-width: 1320px) {
+@media (max-width: 1400px) {
   .nav__links { display: none; }
   .nav__burger { display: grid; }
 }
-@media (min-width: 1321px) {
+@media (min-width: 1401px) {
   .nav__sheet { display: none !important; }
 }
 @media (max-width: 640px) {
@@ -143,4 +143,6 @@
 .nav--on-dark .nav__burger { background: rgba(255, 255, 255, 0.1); color: #ECEBE1; }
 
 .nav__links { flex-wrap: nowrap; }
-.nav__links a { white-space: nowrap; padding: 8px 12px; }
+.nav__links a { white-space: nowrap; padding: 8px 11px; }
+.nav__links { gap: 2px; }
+@media (max-width: 1520px) { .nav__inner .logo__tag { display: none; } }
