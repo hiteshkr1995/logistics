@@ -1,12 +1,12 @@
-import { IconBike, IconEye, IconHeart, IconLeaf, IconShield, IconSliders } from '../ui/icons';
+import { IconBike, IconCalendar, IconCheck, IconEye, IconHeart, IconShield } from '../ui/icons';
 
 const BENEFITS = [
-  { icon: <IconShield />, title: 'Fast & reliable', text: 'Couriers who know the Kiez, on routes planned around how Berlin really moves.' },
-  { icon: <IconBike />, title: 'Electric-bike delivery', text: 'E-cargo bikes slip past traffic jams and stop right at the door — where vans can’t.' },
-  { icon: <IconLeaf />, title: 'Eco-conscious logistics', text: 'Neighbourhood micro-hubs shorten every trip and cut emissions at the source.' },
-  { icon: <IconEye />, title: 'Transparent experience', text: 'Live tracking links and clear status updates from pickup to doorstep.' },
-  { icon: <IconSliders />, title: 'Flexible for business', text: 'One-off parcels or daily routes — plans that grow with your business.' },
-  { icon: <IconHeart />, title: 'Local Berlin network', text: 'Built in Berlin, for Berlin, with hubs in the neighbourhoods we deliver to.' },
+  { icon: <IconCheck />, title: 'A real contract', text: 'Full-time, part-time or Minijob — proper employment, not a freelance gig.' },
+  { icon: <IconBike />, title: 'Company e-bike provided', text: 'Ride a maintained e-bike with an insulated cargo box, or bring your own pedelec.' },
+  { icon: <IconCalendar />, title: 'Pick your delivery windows', text: 'Lunch, afternoon, dinner peak or weekends — plan your shifts around your week.' },
+  { icon: <IconShield />, title: 'Safety comes first', text: 'A safety and equipment briefing before your first ride, plus gear that keeps you seen.' },
+  { icon: <IconHeart />, title: 'Bilingual Berlin team', text: 'English and German spoken by a local team you can actually reach.' },
+  { icon: <IconEye />, title: 'Simple onboarding', text: 'Apply online in four short steps; we check your documents once, then you’re on the road.' },
 ];
 
 export default function WhyUs() {
@@ -16,14 +16,14 @@ export default function WhyUs() {
       <div className="container">
         <div className="section-head" data-reveal>
           <div>
-            <span className="eyebrow eyebrow--light">Why ON-SPREE</span>
+            <span className="eyebrow eyebrow--light">Why ride with ON-SPREE</span>
             <h2 id="why-title" className="h-section">
-              Delivery that feels
+              A job that feels
               <br />
               <span className="why__accent">as good as it moves.</span>
             </h2>
           </div>
-          <p className="lead why__lead">Quiet, clean and quick — we built the delivery service we wanted for our own city.</p>
+          <p className="lead why__lead">We built the rider job we’d want ourselves: fair, safe and organised by people who know Berlin.</p>
         </div>
         <ul className="why__grid">
           {BENEFITS.map((b, i) => (

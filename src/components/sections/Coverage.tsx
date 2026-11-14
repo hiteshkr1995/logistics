@@ -97,19 +97,6 @@ export default function Coverage() {
         </div>
       </div>
 
-      <div className="container">
-        <div className="areas lg-card" data-glass data-reveal>
-          <h3>All areas available in Berlin</h3>
-          <ul className="areas__grid">
-            {AREAS.map((a) => (
-              <li key={a.district}>
-                <strong>{a.district}</strong>
-                <span>{a.kieze.join(' · ')}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
     </section>
   );
 }

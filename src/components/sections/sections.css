@@ -276,11 +276,4 @@
 .coverage__kieze li { display: inline-flex; align-items: center; gap: 6px; }
 .coverage__kieze svg { width: 15px; height: 15px; color: var(--brand-700); stroke-width: 2.4; }
 .coverage__info { border-radius: 20px; }
-.areas { margin-top: clamp(40px, 6vw, 72px); padding: clamp(22px, 3vw, 36px); border-radius: var(--r-lg); }
-.areas h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 18px; }
-.areas__grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 28px; }
-.areas__grid li { display: grid; gap: 4px; padding-left: 14px; border-left: 3px solid var(--brand); }
-.areas__grid strong { font-family: var(--display); font-size: 16px; }
-.areas__grid span { color: var(--ink-soft); font-size: 14.5px; }
-@media (max-width: 899px) { .areas__grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 559px) { .areas__grid { grid-template-columns: 1fr; } }
+
