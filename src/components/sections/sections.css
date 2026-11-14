@@ -263,8 +263,7 @@
 .eb-headlight { fill: #FFF6D8; }
 .eb-taillight { fill: #FF5A4D; }
 .eb-caliper { fill: #3A4246; }
-.eb-box-text { font: 800 22px var(--display); letter-spacing: -0.02em; fill: #EFEEE0; }
-.eb-box-edge { fill: none; stroke: rgba(255, 255, 255, 0.35); stroke-width: 1.5; }
+.eb-box-edge { fill: none; stroke: rgba(15, 16, 17, 0.35); stroke-width: 1.5; }
 .eb-handle { fill: none; stroke: #1B2023; stroke-width: 6; stroke-linecap: round; }
 
 /* ---------- Coverage: areas ---------- */

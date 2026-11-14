@@ -1,3 +1,5 @@
+import { LogoBadge } from './Logo';
+
 /**
  * Detailed side-view of an ON-SPREE courier e-bike: mid-drive motor,
  * down-tube battery, hydraulic disc brakes, chain drive, mudguards,
@@ -51,10 +53,6 @@ export function EBikeIllustration({ animate, className }: { animate: boolean; cl
         <linearGradient id="eb-beam" x1="0" x2="1">
           <stop offset="0" stopColor="#FFF6D8" stopOpacity=".55" />
           <stop offset="1" stopColor="#FFF6D8" stopOpacity="0" />
-        </linearGradient>
-        <linearGradient id="eb-box" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#1C8FD6" />
-          <stop offset="1" stopColor="#0670B0" />
         </linearGradient>
         <linearGradient id="eb-batt" x1="0" x2="0" y1="0" y2="1">
           <stop offset="0" stopColor="#2A9BE0" />
@@ -148,15 +146,15 @@ export function EBikeIllustration({ animate, className }: { animate: boolean; cl
       <rect x={R.x + 10} y={R.y - 26} width="14" height="10" rx="3" className="eb-caliper" />
       <rect x={F.x - 26} y={F.y - 28} width="14" height="10" rx="3" className="eb-caliper" />
 
-      {/* insulated delivery box on the rack */}
+      {/* insulated delivery box on the rack, printed with the ON / SPREE badge */}
       <g className="eb-boxwrap">
-        <rect x="92" y="30" width="144" height="128" rx="14" fill="url(#eb-box)" />
         <g clipPath="url(#eb-box-clip)">
-          <rect x="92" y="30" width="144" height="22" fill="rgba(0,0,0,.18)" />
-          <path d="M92 104 C112 96 128 112 150 104 S190 96 236 104 V158 H92 Z" fill="#EFEEE0" opacity=".96" />
-          <rect x="92" y="132" width="144" height="7" fill="rgba(255,255,255,.75)" />
+          <rect x="92" y="30" width="144" height="128" fill="#EFEEE0" />
+          <rect x="92" y="125" width="144" height="33" fill="#0A7FC7" />
+          <svg x="80" y="45" width="156" height="97.5" aria-hidden="true">
+            <LogoBadge />
+          </svg>
         </g>
-        <text x="164" y="92" textAnchor="middle" className="eb-box-text">ON-SPREE</text>
         <rect x="92" y="30" width="144" height="128" rx="14" className="eb-box-edge" />
         <path d="M120 30 V22 Q120 16 126 16 H202 Q208 16 208 22 V30" className="eb-handle" />
       </g>
