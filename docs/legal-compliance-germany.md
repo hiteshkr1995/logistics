@@ -155,7 +155,7 @@ See section 5 for the full field-by-field plan.
 | Stage | Data | Required? | Legal basis | Retention |
 |---|---|---|---|---|
 | **Application** (website form) | First and last name, email, mobile number | Yes | Art. 6(1)(b) | 6 months after rejection; transfers to the personnel file if hired |
-| | Preferred Berlin areas, availability (days, shifts, hours), preferred start date | Yes | Art. 6(1)(b) | as above |
+| | Berlin district / postal code, engagement type (full-time / part-time / Minijob), earliest start date | Yes | Art. 6(1)(b) | as above |
 | | Type of job (Minijob / part-time / full-time / working student) | Yes | Art. 6(1)(b) | as above |
 | | Right to work in Germany: **self-declared category only, no document** | Yes | Art. 6(1)(b), §4a AufenthG | as above |
 | | Confirmation of age 18+ (a checkbox, **not** date of birth) | Yes | Art. 6(1)(b) | as above |

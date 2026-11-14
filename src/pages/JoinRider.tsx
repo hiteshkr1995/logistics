@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { COMPANY, ENDPOINTS } from '../config';
-import { IconArrow, IconBike, IconCheck, IconClock, IconHeart, IconPhone, IconShield } from '../components/ui/icons';
+import { IconArrow, IconBike, IconCheck, IconHeart, IconPhone, IconShield } from '../components/ui/icons';
 import { LiquidBackdrop } from '../components/ui/LiquidBackdrop';
 import { DistrictPicker } from './DistrictPicker';
 import './pages.css';
@@ -27,12 +27,6 @@ const ENGAGEMENT = [
   { value: 'Part-Time (Teilzeit)', label: 'Part-Time', sub: 'Teilzeit' },
   { value: 'Minijob (Geringfügige Beschäftigung)', label: 'Minijob', sub: 'Geringfügige Beschäftigung' },
 ];
-const WINDOWS = [
-  { value: 'Lunch Service', label: 'Lunch Service' },
-  { value: 'Afternoon Courier Block', label: 'Afternoon Courier Block' },
-  { value: 'Dinner Peak', label: 'Dinner Peak' },
-  { value: 'Weekend Shifts', label: 'Weekend Shifts' },
-];
 const NEXT_STEPS = [
   { title: 'Document verification', text: 'Our fleet coordination desk checks your ID, right to work, tax ID and health insurance.' },
   { title: 'Hub safety & equipment briefing', text: 'A safety and equipment briefing at our central Berlin depot, where you collect your gear.' },
@@ -44,7 +38,7 @@ const DOSSIER: { stage: string; rows: [string, string][] }[] = [
   { stage: STAGES[0], rows: [['Full legal name', 'name'], ['Email', 'email'], ['Mobile', 'phone'], ['District / postal code', 'district'], ['Working language', 'language']] },
   { stage: STAGES[1], rows: [['Right to work', 'workRight'], ['Steuer-ID', 'taxId'], ['Health insurance', 'healthInsurance'], ['Age 18+', 'age']] },
   { stage: STAGES[2], rows: [['Equipment', 'equipment'], ['Urban cycling', 'cycling'], ['Smartphone', 'smartphone'], ['StVO acknowledgement', 'stvo']] },
-  { stage: STAGES[3], rows: [['Engagement', 'engagement'], ['Delivery windows', 'windows'], ['Earliest start', 'startDate'], ['Notes', 'notes'], ['GDPR', 'gdpr'], ['Talent pool', 'talentPool']] },
+  { stage: STAGES[3], rows: [['Engagement', 'engagement'], ['Earliest start', 'startDate'], ['Notes', 'notes'], ['GDPR', 'gdpr'], ['Talent pool', 'talentPool']] },
 ];
 
 /* ---------- form primitives ---------- */
@@ -191,9 +185,9 @@ export default function JoinRider() {
           <p className="lead">Deliver across Berlin on an e-bike as part of the ON-SPREE fleet. Four short stages, about five minutes — no documents needed yet.</p>
 
           <ul className="join__perks">
-            <li className="lg-card" data-glass><IconClock /><div><strong>Choose your windows</strong><span>Lunch, afternoon, dinner peak or weekends.</span></div></li>
+            <li className="lg-card" data-glass><IconShield /><div><strong>Safety briefing included</strong><span>Safety and equipment briefing before your first ride.</span></div></li>
             <li className="lg-card" data-glass><IconBike /><div><strong>Company e-bike or your own</strong><span>Ours come with an insulated cargo box.</span></div></li>
-            <li className="lg-card" data-glass><IconShield /><div><strong>Proper employment</strong><span>Full-time, part-time or Minijob.</span></div></li>
+            <li className="lg-card" data-glass><IconCheck /><div><strong>Proper employment</strong><span>Full-time, part-time or Minijob.</span></div></li>
             <li className="lg-card" data-glass><IconHeart /><div><strong>Bilingual team</strong><span>English and German spoken.</span></div></li>
           </ul>
 
@@ -353,7 +347,6 @@ export default function JoinRider() {
               <fieldset className="join-step" hidden={stage !== 3}>
                 <legend className="join-step__title">Shift preferences &amp; submission</legend>
                 <Chips legend="Engagement classification" name="engagement" type="radio" options={ENGAGEMENT} />
-                <Chips legend="Preferred delivery windows" name="windows" type="checkbox" options={WINDOWS} hint="Choose all that apply." />
                 <div className="form-grid">
                   <Text label="Earliest available start date" name="startDate" type="date" min={today} />
                 </div>

@@ -131,7 +131,7 @@ const DOCS: Record<LegalPage, Doc> = {
               <b>What we collect.</b> When you apply as a rider we process: your legal name, email, German mobile number, Berlin district / postal area,
               preferred working language, self-declared right-to-work status, your confirmations that you hold (or have applied for) a tax ID, have health
               insurance, are 18 or older and will follow the StVO, your equipment preference, urban cycling experience, smartphone platform, engagement type,
-              preferred delivery windows, earliest start date, optional notes and your consent choices. We do <b>not</b> ask for documents, ID or tax numbers,
+              earliest start date, optional notes and your consent choices. We do <b>not</b> ask for documents, ID or tax numbers,
               photos, date of birth, nationality, health data or bank details at this stage.
             </p>
             <p>
