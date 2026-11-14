@@ -197,7 +197,7 @@
 @media (max-width: 479px) { .tab { padding: 0 10px; font-size: 13.5px; } .biz-float { display: none; } }
 
 /* ================= Final CTA ================= */
-.final { padding: 0 0 clamp(80px, 10vw, 120px); }
+.final { padding: clamp(56px, 7vw, 96px) 0 0; } /* sits directly under the hero */
 .final__panel {
   position: relative; overflow: hidden; isolation: isolate; border-radius: 40px; background: var(--night); color: #fff;
   display: grid; grid-template-columns: 1fr 1.05fr; align-items: center; gap: 24px;

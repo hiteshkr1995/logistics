@@ -23,12 +23,12 @@ function Landing() {
   return (
     <>
       <Hero />
+      <FinalCta />
       <Services />
       <HowItWorks />
       <Coverage />
       <WhyUs />
       <Business />
-      <FinalCta />
     </>
   );
 }
