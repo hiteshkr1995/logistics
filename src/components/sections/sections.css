@@ -255,6 +255,9 @@
 .eb-kick { stroke: #7C868D; stroke-width: 4; stroke-linecap: round; }
 .eb-post { stroke: #9AA4AB; stroke-width: 6; stroke-linecap: round; }
 .eb-saddle { fill: #1B2023; stroke: #3A4246; stroke-width: 1.5; }
+.eb-saddle-hl { fill: none; stroke: rgba(255, 255, 255, 0.22); stroke-width: 1.4; stroke-linecap: round; }
+.eb-rails { fill: none; stroke: #7C868D; stroke-width: 1.6; stroke-linecap: round; }
+.eb-clamp { fill: #5D676D; }
 .eb-bar { fill: none; stroke: #C8CED3; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
 .eb-grip { stroke: #1B2023; stroke-width: 8; stroke-linecap: round; }
 .eb-lever { stroke: #9AA4AB; stroke-width: 2.5; stroke-linecap: round; }

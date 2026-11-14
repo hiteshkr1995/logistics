@@ -59,7 +59,7 @@ export function EBikeIllustration({ animate, className }: { animate: boolean; cl
           <stop offset="1" stopColor="#055A8F" />
         </linearGradient>
         <clipPath id="eb-box-clip">
-          <rect x="92" y="30" width="144" height="128" rx="14" />
+          <rect x="66" y="30" width="144" height="128" rx="14" />
         </clipPath>
       </defs>
 
@@ -88,7 +88,7 @@ export function EBikeIllustration({ animate, className }: { animate: boolean; cl
       <Wheel x={F.x} y={F.y} animate={animate} dur={dur} />
 
       {/* rear rack */}
-      <path d="M104 162 H244 M118 162 L150 262 M184 162 L150 262 M240 162 L252 146" className="eb-rack" />
+      <path d="M66 162 H244 M110 162 L150 262 M184 162 L150 262 M240 162 L252 146" className="eb-rack" />
 
       {/* chain + cassette */}
       <circle cx={R.x} cy={R.y} r={12} className="eb-cog" />
@@ -130,8 +130,11 @@ export function EBikeIllustration({ animate, className }: { animate: boolean; cl
       <path d={`M${BB.x - 34} ${BB.y + 4} L${BB.x - 60} ${BB.y + 70}`} className="eb-kick" />
 
       {/* seatpost + saddle */}
-      <path d="M248 118 L242 92" className="eb-post" />
-      <path d="M206 92 C214 82 252 80 276 86 C272 94 246 98 226 98 Z" className="eb-saddle" />
+      <path d="M248 118 L243 98" className="eb-post" />
+      <path d="M232 97 L258 95.5 M236 97.5 L262 96" className="eb-rails" />
+      <rect x="237.5" y="93.5" width="11" height="6" rx="1.5" className="eb-clamp" />
+      <path d="M222 90 C222 84 228 81.5 237 81.5 C252 81.5 267 84.5 282 88 C284.5 88.8 284.5 92 281.5 92.8 C267 95 252 96 238 96.8 C228 97.6 222 96 222 90 Z" className="eb-saddle" />
+      <path d="M228 84.5 C243 83.2 262 85 277 88.2" className="eb-saddle-hl" />
 
       {/* stem, handlebar, grip, lever, display, bell */}
       <path d="M416 116 L424 96 L392 88" className="eb-bar" />
@@ -141,7 +144,7 @@ export function EBikeIllustration({ animate, className }: { animate: boolean; cl
       <rect x="419" y="87" width="16" height="7" rx="1.5" className="eb-display-screen" />
       {/* lights */}
       <rect x="438" y="140" width="16" height="12" rx="4" className="eb-headlight" />
-      <rect x="96" y="164" width="12" height="8" rx="2" className="eb-taillight" />
+      <rect x="62" y="164" width="12" height="8" rx="2" className="eb-taillight" />
       {/* brake calipers */}
       <rect x={R.x + 10} y={R.y - 26} width="14" height="10" rx="3" className="eb-caliper" />
       <rect x={F.x - 26} y={F.y - 28} width="14" height="10" rx="3" className="eb-caliper" />
@@ -149,14 +152,14 @@ export function EBikeIllustration({ animate, className }: { animate: boolean; cl
       {/* insulated delivery box on the rack, printed with the ON / SPREE badge */}
       <g className="eb-boxwrap">
         <g clipPath="url(#eb-box-clip)">
-          <rect x="92" y="30" width="144" height="128" fill="#EFEEE0" />
-          <rect x="92" y="125" width="144" height="33" fill="#0A7FC7" />
-          <svg x="80" y="45" width="156" height="97.5" aria-hidden="true">
+          <rect x="66" y="30" width="144" height="128" fill="#EFEEE0" />
+          <rect x="66" y="125" width="144" height="33" fill="#0A7FC7" />
+          <svg x="54" y="45" width="156" height="97.5" aria-hidden="true">
             <LogoBadge />
           </svg>
         </g>
-        <rect x="92" y="30" width="144" height="128" rx="14" className="eb-box-edge" />
-        <path d="M120 30 V22 Q120 16 126 16 H202 Q208 16 208 22 V30" className="eb-handle" />
+        <rect x="66" y="30" width="144" height="128" rx="14" className="eb-box-edge" />
+        <path d="M94 30 V22 Q94 16 100 16 H176 Q182 16 182 22 V30" className="eb-handle" />
       </g>
     </svg>
   );
