@@ -8,7 +8,7 @@ export const COMPANY = {
   // §5a GmbHG: a UG must always show "(haftungsbeschränkt)" in full.
   legalName: 'ON-SPREE Logistics UG (haftungsbeschränkt)',
   shortLegalName: 'ON-SPREE Logistics UG',
-  email: 'contact@onspree.com',
+  email: 'contact@onspree.de',
   ridersEmail: 'riders@onspree.example',
   businessEmail: 'business@onspree.example',
   privacyEmail: 'privacy@onspree.example',
