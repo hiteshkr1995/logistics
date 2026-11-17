@@ -19,6 +19,21 @@ const LEGAL = [
   { href: '#/trademarks', label: 'Trademarks' },
 ];
 
+/** Rendered twice: next to the logo on phones, in the legal bar elsewhere (CSS shows one). */
+function Socials({ className }: { className: string }) {
+  return (
+    <ul className={`ft__social ${className}`} aria-label="Social media">
+      {SOCIAL.map((s) => (
+        <li key={s.label}>
+          <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
+            {s.icon}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default function Footer() {
   const openDialog = useOpenDialog();
 
@@ -30,6 +45,7 @@ export default function Footer() {
           <a href="#top" className="ft__logo" aria-label={`${COMPANY.legalName} — back to top`}>
             <LogoBadge className="ft__badge" />
           </a>
+          <Socials className="ft__social--top" />
 
           <nav className="ft__col" aria-labelledby="ft-riders">
             <h3 id="ft-riders">Riders</h3>
@@ -63,15 +79,7 @@ export default function Footer() {
               <li key={l.href}><a href={l.href}>{l.label}</a></li>
             ))}
           </ul>
-          <ul className="ft__social" aria-label="Social media">
-            {SOCIAL.map((s) => (
-              <li key={s.label}>
-                <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
-                  {s.icon}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <Socials className="ft__social--bottom" />
         </div>
       </div>
     </footer>

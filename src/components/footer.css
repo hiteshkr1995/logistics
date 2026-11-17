@@ -38,6 +38,7 @@
 }
 .ft__social a:hover { background: var(--brand); color: #fff; box-shadow: none; }
 .ft__social svg { width: 15px; height: 15px; }
+.ft__social--top { display: none; }
 
 /* Narrower screens: copyright + socials on one line, legal links below */
 @media (max-width: 1099px) {
@@ -45,12 +46,19 @@
 }
 @media (max-width: 719px) {
   .ft__top { grid-template-columns: 1fr 1fr; gap: 28px 24px; }
-  /* Phones: the badge spans the full content width (capped so it never gets huge) */
-  .ft__logo { grid-column: 1 / -1; width: min(100%, 380px); border-radius: 20px; }
-  .ft__badge { border-radius: 20px; }
+  /* Phones: a compact badge with the social icons beside it */
+  .ft__logo { width: 140px; }
+  .ft__social--top { display: flex; justify-self: end; align-self: center; gap: 8px; }
+  .ft__social--top a { width: 40px; height: 40px; }
+  .ft__social--top svg { width: 17px; height: 17px; }
+  .ft__social--bottom { display: none; }
   .ft__top > .ft__col:last-child { grid-column: 1 / -1; }
 }
 @media (max-width: 479px) {
   .ft__bottom p { flex: 1 1 200px; }
+}
+@media (max-width: 359px) {
+  .ft__social--top { gap: 6px; }
+  .ft__social--top a { width: 36px; height: 36px; }
 }
 @media (prefers-reduced-motion: reduce) { .ft__logo { transition: none; } }
