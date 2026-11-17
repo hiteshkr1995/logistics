@@ -115,6 +115,3 @@
 :root[data-theme='dark'] .dossier__status--offline { color: #F2C964; }
 :root[data-theme='dark'] .dossier__status--error { color: #FF8A80; }
 :root[data-theme='dark'] .chip:hover { border-color: var(--ink-soft); }
-
-/* Footer river finale: a night sky over the Spree */
-:root[data-theme='dark'] .ft { --ft-sky: linear-gradient(180deg, var(--night) 0%, #0F2433 100%); --ft-on: var(--brand-light); --ft-water: #0A7FC7; }

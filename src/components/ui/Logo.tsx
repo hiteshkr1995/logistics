@@ -36,7 +36,7 @@ export function LogoMark({ size = 36 }: { size?: number }) {
 }
 
 /** Horizontal lockup for the navbar / footer. */
-export function Logo({ tone = 'dark' }: { tone?: 'dark' | 'light' }) {
+export function Logo({ tone = 'dark', tag = 'Logistics' }: { tone?: 'dark' | 'light'; tag?: string }) {
   return (
     <a href="#top" className={`logo logo--${tone}`} aria-label="ON-SPREE Logistics — home">
       <LogoMark />
@@ -45,7 +45,7 @@ export function Logo({ tone = 'dark' }: { tone?: 'dark' | 'light' }) {
         <span className="logo__dash" aria-hidden="true">-</span>
         <span className="logo__spree">SPREE</span>
       </span>
-      <span className="logo__tag">Logistics</span>
+      <span className="logo__tag">{tag}</span>
     </a>
   );
 }
