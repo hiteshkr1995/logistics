@@ -1,4 +1,4 @@
-import { Logo } from './ui/Logo';
+import { LogoBadge } from './ui/Logo';
 import { IconInstagram, IconLinkedIn, IconMail, IconPhone, IconX } from './ui/icons';
 import { useOpenDialog } from './ui/DialogProvider';
 import { COMPANY } from '../config';
@@ -28,7 +28,10 @@ export default function Footer() {
       <div className="container">
         <div className="ft__top">
           <div className="ft__brand">
-            <Logo tone="light" tag="Logistics UG (haftungsbeschränkt)" />
+            <a href="#top" className="ft__logo" aria-label={`${COMPANY.legalName} — back to top`}>
+              <LogoBadge className="ft__badge" />
+            </a>
+            <p className="ft__name">{COMPANY.legalName}</p>
             <p>E-bike riders delivering across Berlin.</p>
             <ul className="ft__social" aria-label="Social media">
               {SOCIAL.map((s) => (

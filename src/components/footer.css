@@ -3,9 +3,11 @@
 
 .ft__top { display: grid; grid-template-columns: minmax(0, 1.7fr) repeat(3, minmax(0, 1fr)); gap: 40px 32px; padding-bottom: clamp(40px, 5vw, 56px); }
 
-.ft__brand .logo { flex-wrap: wrap; row-gap: 8px; }
-/* The full legal name is shown as written, so no uppercase here */
-.ft .logo__tag { display: inline-block; font-family: inherit; font-weight: 500; text-transform: none; letter-spacing: 0; font-size: 12.5px; padding: 4px 9px; }
+.ft__logo { display: inline-block; border-radius: 18px; transition: transform 0.3s var(--ease-out); }
+.ft__logo:hover { transform: translateY(-3px); }
+.ft__badge { display: block; width: clamp(180px, 18vw, 230px); height: auto; border-radius: 18px; box-shadow: 0 24px 48px -28px rgba(10, 127, 199, 0.7); }
+.ft__brand .ft__name { margin-top: 18px; font-size: 14px; font-weight: 600; color: #fff; }
+.ft__brand .ft__name + p { margin-top: 6px; }
 .ft__brand p { margin-top: 16px; max-width: 32ch; font-size: 15px; }
 
 .ft__social { list-style: none; padding: 0; margin: 20px 0 0; display: flex; gap: 8px; }
@@ -37,6 +39,7 @@
   .ft__top { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .ft__brand { grid-column: 1 / -1; }
 }
+@media (prefers-reduced-motion: reduce) { .ft__logo { transition: none; } }
 @media (max-width: 599px) {
   .ft__top { grid-template-columns: 1fr 1fr; }
   .ft__top > .ft__col:last-child { grid-column: 1 / -1; }
