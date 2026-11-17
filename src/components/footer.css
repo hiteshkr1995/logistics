@@ -1,40 +1,146 @@
-.footer { background: var(--night); color: rgba(255, 255, 255, 0.72); padding: clamp(64px, 8vw, 96px) 0 32px; scroll-margin-top: 0; overflow: hidden; }
-.footer__top { display: grid; grid-template-columns: 1.8fr repeat(3, 1fr); gap: 40px 32px; padding-bottom: clamp(40px, 6vw, 64px); }
-.footer__brand p { margin-top: 18px; max-width: 34ch; font-size: 15px; }
-.footer__social { list-style: none; padding: 0; margin: 24px 0 0; display: flex; gap: 10px; }
-.footer__social a {
-  width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: #fff;
-  background: rgba(255, 255, 255, 0.06); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-  transition: background 0.25s, color 0.25s, transform 0.25s var(--ease-out);
-}
-.footer__social a:hover { background: var(--brand); color: #fff; transform: translateY(-3px); }
-.footer__social svg { width: 20px; height: 20px; }
-.footer__col h3 { font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; margin-bottom: 18px; }
-.footer__col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; font-size: 15px; }
-.footer__col a, .footer__col button, .footer__bottom button {
-  background: none; border: 0; padding: 0; text-align: left; color: rgba(255, 255, 255, 0.72); font-size: 15px;
-  transition: color 0.2s;
-}
-.footer__col a:hover, .footer__col button:hover, .footer__bottom button:hover { color: var(--brand-light); }
-.footer__contact { font-style: normal; }
-.footer__contact li { display: flex; gap: 10px; align-items: flex-start; }
-.footer__contact svg { width: 18px; height: 18px; flex: none; margin-top: 3px; color: var(--brand-light); }
-.footer__badge {
-  display: flex; align-items: center; gap: clamp(20px, 4vw, 48px); margin: 0 0 40px;
-  padding: 24px; border-radius: 32px; background: rgba(255, 255, 255, 0.04); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
-}
-.footer__badge-svg { width: min(340px, 48%); height: auto; flex: none; border-radius: 22px; box-shadow: 0 30px 60px -30px rgba(10, 127, 199, 0.6); }
-.footer__badge p { font-family: var(--display); font-weight: 700; font-size: clamp(22px, 3.4vw, 44px); letter-spacing: -0.03em; line-height: 1.05; color: var(--cream); }
-@media (max-width: 639px) { .footer__badge { flex-direction: column; align-items: flex-start; } .footer__badge-svg { width: 100%; } }
-.footer__bottom {
-  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 14px;
-}
-.footer__bottom ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px 24px; }
-.footer__bottom button { font-size: 14px; }
-@media (max-width: 899px) { .footer__top { grid-template-columns: repeat(3, 1fr); } .footer__brand { grid-column: 1 / -1; } }
-@media (max-width: 559px) { .footer__top { grid-template-columns: 1fr 1fr; } .footer__contact { grid-column: 1 / -1; } }
+/* =====================================================================
+   Footer — dark link deck, a district ticker, then the logo at full
+   width: the page ends where the city meets the Spree.
+   ===================================================================== */
+.ft { --ft-sky: var(--cream); --ft-on: var(--brand); --ft-water: var(--brand); color: rgba(255, 255, 255, 0.72); scroll-margin-top: 0; }
 
-.footer__bottom ul a { color: rgba(255, 255, 255, 0.72); font-size: 14px; transition: color 0.2s; }
-.footer__bottom ul a:hover { color: var(--brand-light); }
-.footer__brand p { max-width: 30ch; }
+/* ---------- Dark deck ---------- */
+.ft__main { background: var(--night); padding-top: clamp(64px, 8vw, 104px); overflow: hidden; }
+.ft__top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.1fr); gap: 40px clamp(32px, 4vw, 64px); align-items: start; }
+
+.ft__tagline { margin-top: 18px; max-width: 26ch; font-family: var(--display); font-size: clamp(20px, 1.8vw, 24px); font-weight: 600; line-height: 1.25; letter-spacing: -0.02em; color: var(--cream); }
+.ft__clock {
+  display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; padding: 8px 14px 8px 12px; border-radius: 999px;
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.05); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.09);
+}
+.ft__clock .live-dot { width: 7px; height: 7px; background: var(--brand-light); }
+.ft__clock .live-dot::after { border-color: var(--brand-light); }
+.ft__clock b { color: #fff; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.ft__social { list-style: none; padding: 0; margin: 22px 0 0; display: flex; gap: 10px; }
+.ft__social a {
+  width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: #fff;
+  background: rgba(255, 255, 255, 0.06); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.09);
+  transition: background 0.25s, transform 0.3s var(--ease-out);
+}
+.ft__social a:hover { background: var(--brand); transform: translateY(-3px); }
+.ft__social svg { width: 19px; height: 19px; }
+
+/* Link cards */
+.ft__cards { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.25fr); gap: 14px; }
+.ft-card {
+  position: relative; display: flex; flex-direction: column; gap: 4px; padding: 22px 22px 16px; border-radius: 24px; isolation: isolate; overflow: hidden; overflow: clip;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  transition: transform 0.4s var(--ease-out), box-shadow 0.3s;
+}
+.ft-card::before {
+  content: ''; position: absolute; inset: auto -30% -60% auto; width: 80%; aspect-ratio: 1; border-radius: 50%; z-index: -1;
+  background: radial-gradient(circle, rgba(10, 127, 199, 0.45), transparent 65%); opacity: 0; transition: opacity 0.4s;
+}
+.ft-card:hover { transform: translateY(-4px); box-shadow: inset 0 0 0 1px rgba(76, 168, 227, 0.4); }
+.ft-card:hover::before { opacity: 1; }
+.ft-card__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+.ft-card__head .ft-card__kicker { margin-bottom: 0; }
+.ft-card__kicker { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand-light); margin-bottom: 10px; }
+
+.ft-link {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 12px 0;
+  background: none; border: 0; border-top: 1px solid rgba(255, 255, 255, 0.08); text-align: left;
+  font-family: var(--display); font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: #fff;
+}
+.ft-link svg { width: 18px; height: 18px; flex: none; color: rgba(255, 255, 255, 0.4); transition: transform 0.3s var(--ease-out), color 0.2s; }
+.ft-link:hover svg, .ft-link:focus-visible svg { transform: translateX(4px); color: var(--brand-light); }
+
+.ft-mail { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-top: 1px solid rgba(255, 255, 255, 0.08); min-width: 0; }
+.ft-mail > svg, .ft-phone svg { width: 18px; height: 18px; flex: none; color: var(--brand-light); }
+.ft-mail a { flex: 1; min-width: 0; overflow-wrap: anywhere; font-family: var(--display); font-size: 17px; letter-spacing: -0.01em; font-weight: 600; color: #fff; }
+.ft-mail a:hover { color: var(--brand-light); }
+.ft-copy {
+  flex: none; min-width: 52px; height: 26px; margin: -4px 0; padding: 0 10px; border-radius: 999px; border: 0; display: grid; place-items: center;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #fff;
+  background: rgba(255, 255, 255, 0.08); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12); transition: background 0.2s;
+}
+.ft-copy:hover { background: rgba(255, 255, 255, 0.16); }
+.ft-copy.is-failed { background: rgba(255, 255, 255, 0.04); color: rgba(255, 255, 255, 0.6); }
+.ft-copy.is-copied { background: var(--brand); box-shadow: none; }
+.ft-copy svg { width: 15px; height: 15px; }
+.ft-phone { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 15px; color: rgba(255, 255, 255, 0.72); transition: color 0.2s; }
+.ft-phone:hover { color: #fff; }
+
+/* District ticker */
+.ft-ticker {
+  margin-top: clamp(48px, 6vw, 80px); padding: 18px 0; overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.ft-ticker__track { display: flex; width: max-content; animation: ft-ticker 60s linear infinite; }
+.ft-ticker:hover .ft-ticker__track { animation-play-state: paused; }
+.ft-ticker ul { list-style: none; margin: 0; padding: 0; display: flex; }
+.ft-ticker li {
+  display: flex; align-items: center; white-space: nowrap;
+  font-family: var(--display); font-size: clamp(18px, 2vw, 26px); font-weight: 600; letter-spacing: -0.02em; color: rgba(255, 255, 255, 0.5);
+}
+.ft-ticker li::after { content: '✦'; margin: 0 clamp(18px, 2.4vw, 32px); font-size: 0.6em; color: var(--brand-light); }
+@keyframes ft-ticker { to { transform: translateX(-50%); } }
+.ft-ticker.is-static .ft-ticker__track { animation: none; }
+
+/* ---------- River finale: the logo at full width ---------- */
+.ft-river {
+  position: relative; height: clamp(210px, 36vw, 560px); overflow: hidden; background: var(--ft-sky);
+  font-family: var(--display); font-weight: 800; font-size: clamp(66px, 16vw, 250px); line-height: 0.8; letter-spacing: -0.04em;
+  user-select: none;
+}
+.ft-river__svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.ft-river__water { fill: var(--ft-water); }
+.ft-river__ripple { fill: none; stroke: rgba(255, 255, 255, 0.28); stroke-width: 2; vector-effect: non-scaling-stroke; }
+.ft-river__ripple--deep { stroke: rgba(255, 255, 255, 0.14); }
+/* Waterline sits at 47.5% (y = 190 of 400) */
+.ft-river__on, .ft-river__spree { position: absolute; white-space: nowrap; }
+.ft-river__on { left: 7%; bottom: calc(52.5% + 0.12em); color: var(--ft-on); }
+.ft-river__spree { left: 23%; top: calc(47.5% + 0.2em); color: var(--cream); }
+
+/* ---------- Bottom bar (still in the water) ---------- */
+.ft__bottom { background: var(--ft-water); color: rgba(255, 255, 255, 0.82); font-size: 14px; }
+.ft__bottom-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; padding-top: 22px; padding-bottom: 26px; border-top: 1px solid rgba(255, 255, 255, 0.2); }
+.ft__bottom-row p { margin: 0; }
+.ft__bottom-row ul { list-style: none; padding: 0; margin: 0 0 0 auto; display: flex; flex-wrap: wrap; gap: 8px 22px; }
+.ft__bottom-row ul a { color: rgba(255, 255, 255, 0.82); transition: color 0.2s; }
+.ft__bottom-row ul a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.ft__bottom-row { position: relative; }
+/* Back-to-top floats on the river like a buoy */
+.ft-top {
+  position: absolute; right: var(--gutter); top: clamp(-84px, -6vw, -56px);
+  flex: none; width: 48px; height: 48px; box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.45); border-radius: 50%; display: grid; place-items: center;
+  background: var(--cream); color: var(--brand); transition: transform 0.3s var(--ease-out);
+}
+.ft-top svg { width: 18px; height: 18px; transform: rotate(-90deg); }
+.ft-top:hover { transform: translateY(-3px); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1199px) {
+  .ft__top { grid-template-columns: 1fr; }
+  .ft__brand { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 0 24px; }
+  .ft__brand .logo { grid-column: 1 / -1; }
+  .ft__tagline, .ft__clock, .ft__social { margin-top: 18px; }
+  .ft__tagline { grid-column: 1 / -1; }
+  .ft__social { justify-self: end; }
+}
+@media (max-width: 759px) {
+  .ft__cards { grid-template-columns: 1fr; }
+  .ft__bottom-row ul { margin-left: 0; }
+  .ft__bottom-row p { flex-basis: 100%; }
+}
+@media (max-width: 479px) {
+  .ft__brand { grid-template-columns: 1fr; }
+  .ft__social { justify-self: start; }
+  .ft-river { font-size: 21vw; }
+  .ft-river__spree { left: 13%; }
+  .ft-river__on { left: 6%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ft-ticker__track { animation: none; }
+  .ft-card, .ft-link svg, .ft-top, .ft__social a { transition: none; }
+}
