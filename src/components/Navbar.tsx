@@ -7,11 +7,11 @@ import './navbar.css';
 
 export const NAV_LINKS = [
   { href: '#top', label: 'Home' },
-  { href: '#start', label: 'Start Today' },
   { href: '#services', label: 'Our Services' },
   { href: '#how', label: 'How It Works' },
   { href: '#coverage', label: 'Coverage' },
   { href: '#business', label: 'For Business' },
+  { href: '#start', label: 'Start Today' },
   { href: '#contact', label: 'Contact' },
 ];
 

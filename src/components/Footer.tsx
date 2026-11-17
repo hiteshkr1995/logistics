@@ -1,4 +1,4 @@
-import { Logo } from './ui/Logo';
+import { Logo, LogoBadge } from './ui/Logo';
 import { IconInstagram, IconLinkedIn, IconMail, IconPhone, IconX } from './ui/icons';
 import { useOpenDialog } from './ui/DialogProvider';
 import { COMPANY } from '../config';
@@ -63,6 +63,11 @@ export default function Footer() {
               <li><IconPhone /><a href={`tel:${COMPANY.phoneHref}`}>{COMPANY.phone}</a></li>
             </ul>
           </div>
+        </div>
+
+        <div className="footer__badge">
+          <LogoBadge className="footer__badge-svg" />
+          <p>{COMPANY.shortLegalName} · Berlin</p>
         </div>
 
         <div className="footer__bottom">
