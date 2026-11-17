@@ -45,7 +45,9 @@
 }
 @media (max-width: 719px) {
   .ft__top { grid-template-columns: 1fr 1fr; gap: 28px 24px; }
-  .ft__logo { grid-column: 1 / -1; width: 140px; }
+  /* Phones: the badge spans the full content width (capped so it never gets huge) */
+  .ft__logo { grid-column: 1 / -1; width: min(100%, 380px); border-radius: 20px; }
+  .ft__badge { border-radius: 20px; }
   .ft__top > .ft__col:last-child { grid-column: 1 / -1; }
 }
 @media (max-width: 479px) {
