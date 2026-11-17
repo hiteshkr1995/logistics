@@ -27,22 +27,9 @@ export default function Footer() {
       <h2 id="footer-title" className="sr-only">Contact and site information</h2>
       <div className="container">
         <div className="ft__top">
-          <div className="ft__brand">
-            <a href="#top" className="ft__logo" aria-label={`${COMPANY.legalName} — back to top`}>
-              <LogoBadge className="ft__badge" />
-            </a>
-            <p className="ft__name">{COMPANY.legalName}</p>
-            <p>E-bike riders delivering across Berlin.</p>
-            <ul className="ft__social" aria-label="Social media">
-              {SOCIAL.map((s) => (
-                <li key={s.label}>
-                  <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
-                    {s.icon}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <a href="#top" className="ft__logo" aria-label={`${COMPANY.legalName} — back to top`}>
+            <LogoBadge className="ft__badge" />
+          </a>
 
           <nav className="ft__col" aria-labelledby="ft-riders">
             <h3 id="ft-riders">Riders</h3>
@@ -67,6 +54,19 @@ export default function Footer() {
               <li><IconPhone /><a href={`tel:${COMPANY.phoneHref}`}>{COMPANY.phone}</a></li>
             </ul>
           </div>
+        </div>
+
+        <div className="ft__meta">
+          <p>E-bike riders delivering across Berlin.</p>
+          <ul className="ft__social" aria-label="Social media">
+            {SOCIAL.map((s) => (
+              <li key={s.label}>
+                <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
+                  {s.icon}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="ft__bottom">
