@@ -56,8 +56,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="ft__meta">
-          <p>E-bike riders delivering across Berlin.</p>
+        <div className="ft__bottom">
+          <p>© {new Date().getFullYear()} {COMPANY.legalName}</p>
+          <ul className="ft__legal" aria-label="Legal">
+            {LEGAL.map((l) => (
+              <li key={l.href}><a href={l.href}>{l.label}</a></li>
+            ))}
+          </ul>
           <ul className="ft__social" aria-label="Social media">
             {SOCIAL.map((s) => (
               <li key={s.label}>
@@ -65,15 +70,6 @@ export default function Footer() {
                   {s.icon}
                 </a>
               </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="ft__bottom">
-          <p>© {new Date().getFullYear()} {COMPANY.legalName}</p>
-          <ul aria-label="Legal">
-            {LEGAL.map((l) => (
-              <li key={l.href}><a href={l.href}>{l.label}</a></li>
             ))}
           </ul>
         </div>
